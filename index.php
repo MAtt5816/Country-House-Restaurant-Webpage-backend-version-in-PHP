@@ -27,12 +27,6 @@
       <?php
         include_once 'snippets/announce_bar.php';
       ?>
-<<<<<<< HEAD
-=======
-    <!--  <div id="annonce_bar"><p>ZUPA DNIA: chłodnik litewski za 5 zł!!!&nbsp;&nbsp;&nbsp;***
-&nbsp;&nbsp;&nbsp;23.06.2021 (środa) jesteśmy nieczynni. Przepraszamy&nbsp;&nbsp;&nbsp;***
-&nbsp;&nbsp;&nbsp;W każdą niedzielę do zestawu obiadowego za min. 30 zł lody GRATIS&nbsp;&nbsp;&nbsp;***</p></div> -->
->>>>>>> 5c6b2c5d2674e19b0148e62925c25fc49c84d073
       <article class="main">
         <h2>Tradycyjne obiady kuchni polskiej</h2>
         <p>Swojska Chata działa już od 10 lat szczycząc się od początku niesłabnącą popularnością. U nas zdjesz pożywny i&nbsp;pełnowartościowy posiłek za przystępną cenę.</p>
