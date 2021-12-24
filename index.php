@@ -24,19 +24,19 @@
       </div>
     </header>
     <main>
-      <div id="annonce_bar"><p>ZUPA DNIA: chłodnik litewski za 5 zł!!!&nbsp;&nbsp;&nbsp;***
-&nbsp;&nbsp;&nbsp;23.06.2021 (środa) jesteśmy nieczynni. Przepraszamy&nbsp;&nbsp;&nbsp;***
-&nbsp;&nbsp;&nbsp;W każdą niedzielę do zestawu obiadowego za min. 30 zł lody GRATIS&nbsp;&nbsp;&nbsp;***</p></div>
-        <article class="main">
-          <h2>Tradycyjne obiady kuchni polskiej</h2>
-          <p>Swojska Chata działa już od 10 lat szczycząc się od początku niesłabnącą popularnością. U nas zdjesz pożywny i&nbsp;pełnowartościowy posiłek za przystępną cenę.</p>
-        </article>
-        <article class="main">
-          <h2>Zestawy obiadowe i dania dnia</h2>
-          <h3><i>tylko w lokalu</i></h3>
-          <p>Odwiedzając nasz lokal osobiście możesz coddziennie skorzystać z promoji na zupę dnia i coddzienne inne danie mięsne oraz wybrać zestaw obiadowy w rewelacyjnej cenie.</p>
-        </article>
-        <div id="gallery"></div>
+      <?php
+        include_once 'snippets/announce_bar.php';
+      ?>
+      <article class="main">
+        <h2>Tradycyjne obiady kuchni polskiej</h2>
+        <p>Swojska Chata działa już od 10 lat szczycząc się od początku niesłabnącą popularnością. U nas zdjesz pożywny i&nbsp;pełnowartościowy posiłek za przystępną cenę.</p>
+      </article>
+      <article class="main">
+        <h2>Zestawy obiadowe i dania dnia</h2>
+        <h3><i>tylko w lokalu</i></h3>
+        <p>Odwiedzając nasz lokal osobiście możesz coddziennie skorzystać z promoji na zupę dnia i coddzienne inne danie mięsne oraz wybrać zestaw obiadowy w rewelacyjnej cenie.</p>
+      </article>
+      <div id="gallery"></div>
       <div id="welcome">
         Zapraszamy!
       </div>
