@@ -12,14 +12,14 @@
     <header>
       <nav class="at_index">
         <ul>
-          <li><a href="index.html">Strona główna</a></li>
-          <li><a href="menu.html">Menu</a><ul>
-            <li><a href="menu.html#zupy">Zupy</a></li>
-            <li><a href="menu.html#glowne">Dania główne</a></li>
-            <li><a href="menu.html#maczne">Potrawy mączne</a></li>
+          <li><a href="index.php">Strona główna</a></li>
+          <li><a href="menu.php">Menu</a><ul>
+            <li><a href="menu.php#zupy">Zupy</a></li>
+            <li><a href="menu.php#glowne">Dania główne</a></li>
+            <li><a href="menu.php#maczne">Potrawy mączne</a></li>
           </ul></li>
-          <li><a href="zamowienie.html">Zamów online</a></li>
-          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="zamowienie.php">Zamów online</a></li>
+          <li><a href="kontakt.php">Kontakt</a></li>
         </ul>
       </nav>
       <div id="banner">
@@ -51,9 +51,9 @@
     <footer>
       <section id="links">
         <h4>Na skróty:</h4>
-        <a href="index.html">Strona główna</a><br>
-        <a href="menu.html">Menu</a><br>
-        <a href="zamowienie.html">Zamów online</a><br>
+        <a href="index.php">Strona główna</a><br>
+        <a href="menu.php">Menu</a><br>
+        <a href="zamowienie.php">Zamów online</a><br>
       </section>
       <section class="contact">
         <h4>Dane kontaktowe:</h4>
