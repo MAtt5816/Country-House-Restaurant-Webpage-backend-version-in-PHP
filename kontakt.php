@@ -32,21 +32,8 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1479.505218798846!2d21.993673986872178!3d51.41736188751752!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47227bda101593f9%3A0x19cce2b7303ced95!2zS3LDs3RrYSAxMSwgMjQtMTAwIFB1xYJhd3k!5e0!3m2!1spl!2spl!4v1623513234562!5m2!1spl!2spl" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </main>
-    <footer>
-      <section id="links">
-        <h4>Na skróty:</h4>
-        <a href="index.php">Strona główna</a><br>
-        <a href="menu.php">Menu</a><br>
-        <a href="zamowienie.php">Zamów online</a><br>
-      </section>
-      <section class="contact">
-        <h4>Dane kontaktowe:</h4>
-        Restauracja Swojska Chata<br>
-        <a href="mailto:example@example.pl"><span class="material-icons">email</span> example@example.pl</a><br>
-        <a href="tel:+48225553040"><span class="material-icons">call</span> (+48) 22 555 30 40</a><br>
-        <a href="https://www.google.com/maps/place/Kr%C3%B3tka+11,+24-100+Pu%C5%82awy/" target="_blank"><span class="material-icons">location_on</span> ul. Krótka 11 00-001 Miasto</a><br>
-      </section>
-      <div><hr>&copy; 2021 Mateusz Szewczyk</div>
-    </footer>
+    <?php
+      include_once 'snippets/footer.php';
+    ?>
   </body>
 </html>
