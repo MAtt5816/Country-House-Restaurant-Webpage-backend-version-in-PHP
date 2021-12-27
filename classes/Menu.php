@@ -10,7 +10,7 @@
       'cell_end' => '</td>'
       );
 
-    protected $categories_types = array('Dania główne' => 'glowne', 'Dodatki obiadowe do wyboru' => 'dodatki', 'Zupy' => 'zupy', 'Potrawy mączne' => 'maczne');
+    protected $categories_types = array('glowne' => 'Dania główne', 'dodatki' => 'Dodatki obiadowe do wyboru', 'zupy' => 'Zupy', 'maczne' => 'Potrawy mączne');
 
     public function __construct($category)
     {
@@ -19,8 +19,9 @@
     }
 
     public function build_table($db){
-      $sql = "SELECT * FROM menu WHERE `kategoria` LIKE $categories_types[$category]";
-      echo $sql;
+      $key = $this->category;
+      $cat = $this->categories_types[$key];
+      $sql = "SELECT * FROM `menu` WHERE `kategoria` LIKE '$cat'";
       $fields = array('nazwa', 'cena');
       $result = $db->select($sql, $fields);
 
