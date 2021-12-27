@@ -15,14 +15,16 @@
     public function __construct($category)
     {
       $this->category = $category;
+      echo "OBJ = $category <br />";
     }
 
     public function build_table($db){
       $sql = "SELECT * FROM menu WHERE `kategoria` LIKE $categories_types[$category]";
+      echo $sql;
       $fields = array('nazwa', 'cena');
-      $result = $db->select($sql, $fileds);
+      $result = $db->select($sql, $fields);
 
-      var_dump($result);
+      var_dump($result);  //temp print
     }
 
     public function print()
