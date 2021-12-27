@@ -3,7 +3,12 @@
   {
     private $category;
 
-    private row_start, row_end, cell_start, cell_end = '<tr>', '</tr>', '<td>', '</td>';
+    private const tabe_tags = array(
+      row_start => '<tr>',
+      row_end => '</tr>',
+      cell_start => '<td>',
+      cell_end => '</td>'
+      );
 
     protected $categories_types = array('Dania główne' => 'glowne', 'Dodatki obiadowe do wyboru' => 'dodatki', 'Zupy' => 'zupy', 'Potrawy mączne' => 'maczne');
 
@@ -12,7 +17,7 @@
       $this->category = $category;
     }
 
-    public build_table($db){
+    public function build_table($db){
       $sql = "SELECT * FROM menu WHERE `kategoria` LIKE $categories_types[$category]";
       $fields = array('nazwa', 'cena');
       $result = $db->select($sql, $fileds);
@@ -20,12 +25,12 @@
       var_dump($result);
     }
 
-    public print()
+    public function print()
     {
       //TODO... printing menu from DB
     }
 
-    public __destruct()
+    public function __destruct()
     {}
   }
 ?>
