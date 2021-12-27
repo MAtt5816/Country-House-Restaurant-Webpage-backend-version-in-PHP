@@ -4,10 +4,10 @@
     private $category;
 
     private const tabe_tags = array(
-      row_start => '<tr>',
-      row_end => '</tr>',
-      cell_start => '<td>',
-      cell_end => '</td>'
+      'row_start' => '<tr>',
+      'row_end' => '</tr>',
+      'cell_start' => '<td>',
+      'cell_end' => '</td>'
       );
 
     protected $categories_types = array('Dania główne' => 'glowne', 'Dodatki obiadowe do wyboru' => 'dodatki', 'Zupy' => 'zupy', 'Potrawy mączne' => 'maczne');
