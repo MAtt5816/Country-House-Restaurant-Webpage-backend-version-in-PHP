@@ -20,30 +20,25 @@
       $this->mysqli->close();
     }
 
-    public function select($sql, $pola) {
-    /*    //parametr $sql – łańcuch zapytania select
-        //parametr $pola - tablica z nazwami pol w bazie
-        //Wynik funkcji – kod HTML tabeli z rekordami (String)
-        $tresc = "";
+    public function select($sql, $fields) {
+        // $sql arg – SELECT query
+        // $fields arg - array with fields names in DB
+        //result – association array with ressult from DB
+        $content = array();
         if ($result = $this->mysqli->query($sql)) {
-            $ilepol = count($pola); //ile pól
-            $ile = $result->num_rows; //ile wierszy
-            // pętla po wyniku zapytania $results
-            $tresc.="<table><tbody>";
+            $count_fields = count($fields); //how many fileds
+            $count_rows = $result->num_rows; //how many rows
+            $j = 0;
             while ($row = $result->fetch_object()) {
-                $tresc.="<tr>";
-                for ($i = 0; $i < $ilepol; $i++) {
-                    $p = $pola[$i];
-                    $tresc.="<td>" . $row->$p . "</td>";
+                for ($i = 0; $i < $count_fields; $i++) {
+                    $p = $fields[$i];
+                    $content[j][$p] = $row->$p;
                 }
-                $tresc.="</tr>";
+                $j++;
             }
-            $tresc.="</table></tbody>";
-            $result->close(); /* zwolnij pamięć
-      */
-      // TODO
+            $result->close();
         }
-        return $tresc;
+        return $content;
     }
 
     public function delete($sql) {
