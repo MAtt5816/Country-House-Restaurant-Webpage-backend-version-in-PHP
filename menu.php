@@ -23,7 +23,20 @@
       </div>
     </header>
     <main>
-      <table id="glowne" class="menu_cat">
+      <?php
+        include_once 'classes/Database.php';
+        include_once 'classes/Menu.php';
+
+        $db = new Database('localhost', 'root', '', 'restauracja');
+
+        //$tables = array('Dania główne', 'Dodatki obiadowe do wyboru', 'Zupy', 'Potrawy mączne');  // list names of menu's
+        $tables = array('glowne', 'dodatki', 'zupy', 'maczne');
+        foreach ($tables as $value) {
+          $menu_{$value} = new Menu($value);
+          $menu_{$value}->build_table($db);
+        }
+      ?>
+  <!--    <table id="glowne" class="menu_cat">
         <caption>Dania główne</caption>
         <tbody>
           <tr>
@@ -182,7 +195,7 @@
             <td class="price">10 zł</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
     </main>
     <?php
       include_once 'snippets/footer.php';
