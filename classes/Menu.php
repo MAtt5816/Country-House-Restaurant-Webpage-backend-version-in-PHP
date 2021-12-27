@@ -21,10 +21,8 @@
             <tbody>";
       foreach ($result as $value) {
         $content .= '<tr>';
-        foreach ($value as $val) {
-          $content .= '<td>'.$val.'</td>';
-          $content .= '<td>'.$val.'</td>';
-        }
+        $content .= '<td class="dish_name">'.$value['nazwa'].'</td>';
+        $content .= '<td class="price">'.$value['cena'].'</td>';
         $content .= '</tr>';
       }
       $content .= '</tbody>';
