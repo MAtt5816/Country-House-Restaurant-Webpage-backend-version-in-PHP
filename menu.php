@@ -33,7 +33,7 @@
         $tables = array('glowne', 'dodatki', 'zupy', 'maczne');
         foreach ($tables as $value) {
           $menu_{$value} = new Menu($value);
-          $menu_{$value}->build_table($db);
+          $menu_{$value}->print($db);
         }
       ?>
   <!--    <table id="glowne" class="menu_cat">
