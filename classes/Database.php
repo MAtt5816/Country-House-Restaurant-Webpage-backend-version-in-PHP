@@ -32,7 +32,7 @@
             while ($row = $result->fetch_object()) {
                 for ($i = 0; $i < $count_fields; $i++) {
                     $p = $fields[$i];
-                    $content[j][$p] = $row->$p;
+                    $content[$j][$p] = $row->$p;
                 }
                 $j++;
             }
