@@ -38,7 +38,19 @@
         </fieldset>
         <fieldset id="menu_positions">
           <legend>Menu</legend>
-          <fieldset>
+          <?php
+            include_once 'classes/Database.php';
+            include_once 'classes/OrderForm.php';
+
+            $db = new Database('localhost', 'root', '', 'restauracja');
+
+            $tables = array('glowne', 'dodatki', 'zupy', 'maczne');
+            foreach ($tables as $value) {
+              $form_{$value} = new OrderForm($value);
+              $form_{$value}->print($db);
+            }
+          ?>
+        <!--  <fieldset>
             <legend>Dania główne</legend>
               <input type="checkbox" name="tradycyjny" id="tradycyjny">
               <div class="menuPosition" id="div_tradycyjny">
@@ -225,7 +237,7 @@
                 <label for="leniwe"><span class="menuPosition_element dish_name">Kluski leniwe na słodko</span>
                 <span class="menuPosition_element price">10 zł</span></label>
               </div>
-          </fieldset>
+          </fieldset> -->
         </fieldset>
       </fieldset>
       <fieldset class="visibility" id="details">
