@@ -14,7 +14,7 @@
     public function print($db)
     {
       list($result, $key, $cat) = Menu::build_table($db);
-      echo "fieldset";
+      echo "<fieldset>";
       $content = "<legend>$cat</legend>";
       foreach ($result as $value) {
         $content .= '<input type="checkbox" name="'.$value['name_tag'].'" id="'.$value['name_tag'].'">';
