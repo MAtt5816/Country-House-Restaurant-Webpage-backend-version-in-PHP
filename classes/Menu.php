@@ -17,6 +17,13 @@
       $fields = array('nazwa', 'cena');
       $result = $db->select($sql, $fields);
 
+      return array($result, $key, $cat);
+    }
+
+    public function print($db)
+    {
+      list($result, $key, $cat) = $this->build_table($db);
+      echo "<table id='$key' class='menu_cat'>";
       $content = "<caption>$cat</caption>
             <tbody>";
       foreach ($result as $value) {
@@ -26,12 +33,8 @@
         $content .= '</tr>';
       }
       $content .= '</tbody>';
-      return $content;
-    }
-
-    public function print($db)
-    {
-      echo "<table id='$this->category' class='menu_cat'>".$this->build_table($db)."</table>";
+      echo $content;
+      echo "</table>";
     }
 
     public function __destruct()
