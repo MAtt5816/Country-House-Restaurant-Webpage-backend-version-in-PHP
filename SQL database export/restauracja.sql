@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 24 Gru 2021, 15:59
+-- Czas generowania: 28 Gru 2021, 13:31
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.11
 
@@ -25,6 +25,45 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `adres`
+--
+
+CREATE TABLE `adres` (
+  `ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
+  `ulica` varchar(100) NOT NULL,
+  `numer` varchar(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `dane_klienta`
+--
+
+CREATE TABLE `dane_klienta` (
+  `ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
+  `imie` varchar(20) NOT NULL,
+  `nazwisko` varchar(40) NOT NULL,
+  `nr_tel` varchar(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `lista_pozycji`
+--
+
+CREATE TABLE `lista_pozycji` (
+  `zamowienie_ID` int(11) NOT NULL,
+  `menu_ID` int(11) NOT NULL,
+  `ilosc` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `menu`
 --
 
@@ -32,58 +71,117 @@ CREATE TABLE `menu` (
   `ID` int(10) UNSIGNED NOT NULL,
   `kategoria` enum('Dania główne','Dodatki obiadowe do wyboru','Zupy','Potrawy mączne') NOT NULL,
   `nazwa` varchar(100) NOT NULL,
-  `cena` decimal(4,2) UNSIGNED NOT NULL
+  `cena` decimal(4,2) UNSIGNED NOT NULL,
+  `name_tag` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `menu`
 --
 
-INSERT INTO `menu` (`ID`, `kategoria`, `nazwa`, `cena`) VALUES
-(1, 'Dania główne', 'Kotlet schabowy tradycyjny', '9.00'),
-(2, 'Dania główne', 'Kotlet schabowy zapiekany serem i pieczarką', '11.00'),
-(3, 'Dania główne', 'Pierś z kurczaka w panierce', '9.00'),
-(4, 'Dania główne', 'Kotlet mielony', '9.00'),
-(5, 'Dania główne', 'Żeberka wieprzowe', '13.00'),
-(6, 'Dania główne', 'Bitka wołowa', '12.00'),
-(7, 'Dania główne', 'Gołąbek', '11.00'),
-(8, 'Dania główne', 'Udko pieczone', '9.00'),
-(9, 'Dania główne', 'Kotlet de’volaille z serem i masłem', '11.00'),
-(10, 'Dania główne', 'Gulasz wieprzowy warzywami', '11.00'),
-(11, 'Dania główne', 'Placek po węgiersku', '20.00'),
-(12, 'Dania główne', 'Filet z dorsza w delikatnej panierce', '12.00'),
-(13, 'Dodatki obiadowe do wyboru', 'Frytki', '5.00'),
-(14, 'Dodatki obiadowe do wyboru', 'Ziemniaki', '5.00'),
-(15, 'Dodatki obiadowe do wyboru', 'Ziemniaki opiekane', '6.00'),
-(16, 'Dodatki obiadowe do wyboru', 'Chleb (2 kromki)', '1.00'),
-(17, 'Dodatki obiadowe do wyboru', 'Zestaw surówek', '5.00'),
-(18, 'Dodatki obiadowe do wyboru', 'Kapusta zasmażana', '5.00'),
-(19, 'Dodatki obiadowe do wyboru', 'Ketchup / musztarda', '1.00'),
-(20, 'Zupy', 'Pomidorowa', '6.00'),
-(21, 'Zupy', 'Żurek staropolski', '8.00'),
-(22, 'Zupy', 'Flaki wołowe', '9.00'),
-(23, 'Zupy', 'Barszcz ukraiński', '7.00'),
-(24, 'Zupy', 'Barszcz czerwony z uszkami', '7.00'),
-(25, 'Zupy', 'Grochowa', '7.00'),
-(26, 'Zupy', 'Rosół domowy', '5.00'),
-(27, 'Zupy', 'Ogórkowa', '7.00'),
-(28, 'Zupy', 'Szczawiowa', '6.00'),
-(29, 'Potrawy mączne', 'Pierogi z mięsem', '14.00'),
-(30, 'Potrawy mączne', 'Pierogi z kapustą', '14.00'),
-(31, 'Potrawy mączne', 'Pierogi ruskie', '14.00'),
-(32, 'Potrawy mączne', 'Pierogi z serem', '14.00'),
-(33, 'Potrawy mączne', 'Placki ziemniaczane ze śmietaną (3 szt.)', '9.00'),
-(34, 'Potrawy mączne', 'Naleśniki z serem, bitą śmietaną i owocami (1 szt.)', '4.00'),
-(35, 'Potrawy mączne', 'Kluski leniwe na słodko', '10.00');
+INSERT INTO `menu` (`ID`, `kategoria`, `nazwa`, `cena`, `name_tag`) VALUES
+(1, 'Dania główne', 'Kotlet schabowy tradycyjny', '9.00', 'tradycyjny'),
+(2, 'Dania główne', 'Kotlet schabowy zapiekany serem i pieczarką', '11.00', 'zapiekany'),
+(3, 'Dania główne', 'Pierś z kurczaka w panierce', '9.00', 'piers'),
+(4, 'Dania główne', 'Kotlet mielony', '9.00', 'mielony'),
+(5, 'Dania główne', 'Żeberka wieprzowe', '13.00', 'zeberka'),
+(6, 'Dania główne', 'Bitka wołowa', '12.00', 'bitka'),
+(7, 'Dania główne', 'Gołąbek', '11.00', 'golabek'),
+(8, 'Dania główne', 'Udko pieczone', '9.00', 'udko'),
+(9, 'Dania główne', 'Kotlet de’volaille z serem i masłem', '11.00', 'devolaille'),
+(10, 'Dania główne', 'Gulasz wieprzowy warzywami', '11.00', 'gulasz'),
+(11, 'Dania główne', 'Placek po węgiersku', '20.00', 'wegierski'),
+(12, 'Dania główne', 'Filet z dorsza w delikatnej panierce', '12.00', 'filet'),
+(13, 'Dodatki obiadowe do wyboru', 'Frytki', '5.00', 'frytki'),
+(14, 'Dodatki obiadowe do wyboru', 'Ziemniaki', '5.00', 'ziemniaki'),
+(15, 'Dodatki obiadowe do wyboru', 'Ziemniaki opiekane', '6.00', 'opiekane'),
+(16, 'Dodatki obiadowe do wyboru', 'Chleb (2 kromki)', '1.00', 'chleb'),
+(17, 'Dodatki obiadowe do wyboru', 'Zestaw surówek', '5.00', 'surowki'),
+(18, 'Dodatki obiadowe do wyboru', 'Kapusta zasmażana', '5.00', 'kapusta'),
+(19, 'Dodatki obiadowe do wyboru', 'Ketchup / musztarda', '1.00', 'ketchup'),
+(20, 'Zupy', 'Pomidorowa', '6.00', 'pomidorowa'),
+(21, 'Zupy', 'Żurek staropolski', '8.00', 'zurek'),
+(22, 'Zupy', 'Flaki wołowe', '9.00', 'flaki'),
+(23, 'Zupy', 'Barszcz ukraiński', '7.00', 'ukrainski'),
+(24, 'Zupy', 'Barszcz czerwony z uszkami', '7.00', 'barszcz'),
+(25, 'Zupy', 'Grochowa', '7.00', 'grochowa'),
+(26, 'Zupy', 'Rosół domowy', '5.00', 'rosol'),
+(27, 'Zupy', 'Ogórkowa', '7.00', 'ogorek'),
+(28, 'Zupy', 'Szczawiowa', '6.00', 'szczawiowa'),
+(29, 'Potrawy mączne', 'Pierogi z mięsem', '14.00', 'pierogiMiesne'),
+(30, 'Potrawy mączne', 'Pierogi z kapustą', '14.00', 'pierogiKapustne'),
+(31, 'Potrawy mączne', 'Pierogi ruskie', '14.00', 'ruskie'),
+(32, 'Potrawy mączne', 'Pierogi z serem', '14.00', 'pierogiSerowe'),
+(33, 'Potrawy mączne', 'Placki ziemniaczane ze śmietaną (3 szt.)', '9.00', 'placki'),
+(34, 'Potrawy mączne', 'Naleśniki z serem, bitą śmietaną i owocami (1 szt.)', '4.00', 'nalesniki'),
+(35, 'Potrawy mączne', 'Kluski leniwe na słodko', '10.00', 'leniwe');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `user`
+--
+
+CREATE TABLE `user` (
+  `ID` int(11) NOT NULL,
+  `login` varchar(35) NOT NULL,
+  `password` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `zamowienie`
+--
+
+CREATE TABLE `zamowienie` (
+  `ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
+  `data` datetime NOT NULL,
+  `typ` enum('na wynos','dostawa') NOT NULL,
+  `listaPozycji_ID` int(11) NOT NULL,
+  `daneKlienta_ID` int(11) NOT NULL,
+  `czasRealizacji_typ` enum('ASAP','wybiera') NOT NULL,
+  `dataRealizacji` datetime DEFAULT NULL,
+  `adres_ID` int(11) DEFAULT NULL,
+  `uwagi` varchar(150) NOT NULL,
+  `platnosc` enum('gotowka','karta','bon','') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indeksy dla zrzutów tabel
 --
 
 --
+-- Indeksy dla tabeli `adres`
+--
+ALTER TABLE `adres`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indeksy dla tabeli `dane_klienta`
+--
+ALTER TABLE `dane_klienta`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indeksy dla tabeli `menu`
 --
 ALTER TABLE `menu`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `name_tag` (`name_tag`);
+
+--
+-- Indeksy dla tabeli `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `login` (`login`);
+
+--
+-- Indeksy dla tabeli `zamowienie`
+--
+ALTER TABLE `zamowienie`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -91,10 +189,34 @@ ALTER TABLE `menu`
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `adres`
+--
+ALTER TABLE `adres`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT dla tabeli `dane_klienta`
+--
+ALTER TABLE `dane_klienta`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT dla tabeli `menu`
 --
 ALTER TABLE `menu`
   MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT dla tabeli `user`
+--
+ALTER TABLE `user`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT dla tabeli `zamowienie`
+--
+ALTER TABLE `zamowienie`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
