@@ -8,11 +8,12 @@
     function __construct($category)
     {
       $this->category = $category;
+      Menu::__construct($category);
     }
 
     public function print($db)
     {
-      list($result, $key, $cat) = Menu->build_table($db);
+      list($result, $key, $cat) = Menu::build_table($db);
       echo "fieldset";
       $content = "<legend>$cat</legend>";
       foreach ($result as $value) {
