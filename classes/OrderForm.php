@@ -1,6 +1,6 @@
 <?php
   include_once 'Menu.php';
-  
+
   class OrderForm extends Menu
   {
     private $category;
@@ -12,7 +12,7 @@
 
     public function print($db)
     {
-      list($result, $key, $cat) = $Menu->build_table($db);
+      list($result, $key, $cat) = Menu->build_table($db);
       echo "fieldset";
       $content = "<legend>$cat</legend>";
       foreach ($result as $value) {
