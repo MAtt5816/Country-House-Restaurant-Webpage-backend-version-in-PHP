@@ -14,7 +14,7 @@
       $key = $this->category;
       $cat = $this->categories_types[$key];
       $sql = "SELECT * FROM `menu` WHERE `kategoria` LIKE '$cat'";
-      $fields = array('nazwa', 'cena');
+      $fields = array('nazwa', 'cena','name_tag');
       $result = $db->select($sql, $fields);
 
       return array($result, $key, $cat);
