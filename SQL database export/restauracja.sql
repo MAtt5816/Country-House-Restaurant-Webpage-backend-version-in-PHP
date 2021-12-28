@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 28 Gru 2021, 13:31
+-- Czas generowania: 28 Gru 2021, 13:47
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.11
 
@@ -57,8 +57,8 @@ CREATE TABLE `dane_klienta` (
 
 CREATE TABLE `lista_pozycji` (
   `zamowienie_ID` int(11) NOT NULL,
-  `menu_ID` int(11) NOT NULL,
-  `ilosc` int(11) NOT NULL
+  `menu_ID` int(10) UNSIGNED NOT NULL,
+  `ilosc` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -156,13 +156,22 @@ CREATE TABLE `zamowienie` (
 -- Indeksy dla tabeli `adres`
 --
 ALTER TABLE `adres`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `user_ID` (`user_ID`);
 
 --
 -- Indeksy dla tabeli `dane_klienta`
 --
 ALTER TABLE `dane_klienta`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `user_ID` (`user_ID`);
+
+--
+-- Indeksy dla tabeli `lista_pozycji`
+--
+ALTER TABLE `lista_pozycji`
+  ADD KEY `zamowienie_ID` (`zamowienie_ID`),
+  ADD KEY `menu_ID` (`menu_ID`);
 
 --
 -- Indeksy dla tabeli `menu`
@@ -182,7 +191,8 @@ ALTER TABLE `user`
 -- Indeksy dla tabeli `zamowienie`
 --
 ALTER TABLE `zamowienie`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `user_ID` (`user_ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -217,6 +227,35 @@ ALTER TABLE `user`
 --
 ALTER TABLE `zamowienie`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Ograniczenia dla zrzutów tabel
+--
+
+--
+-- Ograniczenia dla tabeli `adres`
+--
+ALTER TABLE `adres`
+  ADD CONSTRAINT `adres_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `dane_klienta`
+--
+ALTER TABLE `dane_klienta`
+  ADD CONSTRAINT `dane_klienta_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `lista_pozycji`
+--
+ALTER TABLE `lista_pozycji`
+  ADD CONSTRAINT `lista_pozycji_ibfk_1` FOREIGN KEY (`zamowienie_ID`) REFERENCES `zamowienie` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lista_pozycji_ibfk_2` FOREIGN KEY (`menu_ID`) REFERENCES `menu` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `zamowienie`
+--
+ALTER TABLE `zamowienie`
+  ADD CONSTRAINT `zamowienie_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
