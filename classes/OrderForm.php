@@ -54,6 +54,10 @@
 
 
     public function __destruct()
-    {}
+    {
+      Form::__destruct();
+      Menu::__destruct();
+      echo "destruct";
+    }
   }
 ?>
