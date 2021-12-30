@@ -46,7 +46,7 @@
                 $string .='"'.$val.'", ';
             }
             $string = substr_replace($string, "", -2, 2);
-            $sql = "INSERT INTO klienci (`Id`, `Nazwisko`, `Panstwo`, `Zamowienie`, `Wiek`, `Email`, `Platnosc`) VALUES (NULL, $string);";
+        //    $sql = "INSERT INTO klienci (`Id`, `Nazwisko`, `Panstwo`, `Zamowienie`, `Wiek`, `Email`, `Platnosc`) VALUES (NULL, $string);";   //TODO
             if($bd->insert($sql)){
                 echo "Dodano do bazy";
             }
