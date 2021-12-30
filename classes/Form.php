@@ -4,8 +4,12 @@
    */
   class Form
   {
-    function __construct()
-    {}
+    protected $filter_array = array();
+
+    function __construct($filter_array)
+    {
+      $this->filter_array = $filter_array;
+    }
 
     public function validation($filter_array){
       $args = $filter_array;
@@ -25,6 +29,31 @@
           echo "<br>Nie poprawnie dane: " . $errors;
           return "";
       }
+    }
+
+    function insertToDB($bd){
+        $data = validation($this->filter_array);
+        if($data != ""){
+            $positions = "";
+            foreach ($data['position'] as $val){
+                $positions .= $val.",";
+            }
+            $positions = substr_replace($positions, "", -1);
+            $data['position'] = $positions;
+
+            $string = "";
+            foreach ($data as $val){
+                $string .='"'.$val.'", ';
+            }
+            $string = substr_replace($string, "", -2, 2);
+            $sql = "INSERT INTO klienci (`Id`, `Nazwisko`, `Panstwo`, `Zamowienie`, `Wiek`, `Email`, `Platnosc`) VALUES (NULL, $string);";
+            if($bd->insert($sql)){
+                echo "Dodano do bazy";
+            }
+            else{
+              echo "Błąd dodania do bazy";
+            }
+        }
     }
 
     function __destruct()
