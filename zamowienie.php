@@ -84,11 +84,12 @@
       </fieldset>
     </form>
     <?php
+      $form = new OrderForm("");
       if(filter_input(INPUT_POST, "submit")){
         $action = filter_input(INPUT_POST, "submit");
         switch ($action){
             case "Zamawiam": {
-                $form_1->insertToDB($db);
+                $form->insertToDB($db);
                 break;
             }
         }
