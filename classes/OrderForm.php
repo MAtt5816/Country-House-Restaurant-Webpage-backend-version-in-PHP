@@ -4,11 +4,41 @@
   class OrderForm extends Menu
   {
     private $category;
+    protected $filter_array = [
+        'surname' => ['filter' => FILTER_VALIDATE_REGEXP,
+          'options' => ['regexp' => '/^[A-Z]{1}[a-ząęłńśćźżó-]{1,25}$/']],
+        'country' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        'jezyki' => ['filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS, 'flags' => FILTER_REQUIRE_ARRAY],
+        'age' => ['filter' => FILTER_VALIDATE_INT, 'options' => ['min_range' => 0]],
+        'mail' => FILTER_VALIDATE_EMAIL,
+
+        //-------------------------
+        'order_type' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        'position' => ['filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS, 'flags' => FILTER_REQUIRE_ARRAY],
+        'name' => ['filter' => FILTER_VALIDATE_REGEXP,
+          'options' => ['regexp' => '/^[A-Za-z]\D+$/']],
+        'surname' => ['filter' => FILTER_VALIDATE_REGEXP,
+          'options' => ['regexp' => '/^[A-Za-z]\D+$/']],
+        'tel' => ['filter' => FILTER_VALIDATE_REGEXP,
+          'options' => ['regexp' => '/^\d{9}}$/']],
+        'time' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        'hour' => ['filter' => FILTER_VALIDATE_REGEXP,
+          'options' => ['regexp' => '/^[0-5]\d{1}\:[0-5]\d{1}}$/']],
+        'date' => ['filter' => FILTER_VALIDATE_REGEXP,
+          'options' => ['regexp' => '/^\d{4}\-\d{2}\-\d{2}$/']],
+        'street' => ['filter' => FILTER_VALIDATE_REGEXP,
+          'options' => ['regexp' => '/^[A-Za-z0-9]{1}[0-9A-Za-z\/ \.\,\'-]{0,99}$/']],
+        'number' => ['filter' => FILTER_VALIDATE_REGEXP,
+          'options' => ['regexp' => '/^[0-9]{1}[0-9A-Za-z\/ \.]{0,5}$/']],
+        'payment' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        'comments' => FILTER_SANITIZE_FULL_SPECIAL_CHARS
+      ];
 
     function __construct($category)
     {
       $this->category = $category;
       Menu::__construct($category);
+      Form::__construct($this->filter_array);
     }
 
     public function print($db)
@@ -28,6 +58,8 @@
       echo $content;
       echo "</fieldset>";
     }
+
+
 
     public function __destruct()
     {}
