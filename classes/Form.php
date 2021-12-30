@@ -26,13 +26,13 @@
       if ($errors === "") {
           return $data;
       } else {
-          echo "<br>Nie poprawnie dane: " . $errors;
+          echo "<br>Niepoprawnie dane: " . $errors;
           return "";
       }
     }
 
     function insertToDB($bd){
-        $data = validation($this->filter_array);
+        $data = $this->validation($this->filter_array);
         if($data != ""){
             $positions = "";
             foreach ($data['position'] as $val){
