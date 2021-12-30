@@ -14,8 +14,6 @@
     public function validation($filter_array){
       $args = $filter_array;
       $data = filter_input_array(INPUT_POST, $args);
-      var_dump($data);   //tmp func.
-      echo "<br />";    //tmp
 
       $errors = "";
       foreach ($data as $key => $val) {
