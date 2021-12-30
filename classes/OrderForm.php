@@ -5,14 +5,6 @@
   {
     private $category;
     protected $filter_array = [
-        'surname' => ['filter' => FILTER_VALIDATE_REGEXP,
-          'options' => ['regexp' => '/^[A-Z]{1}[a-ząęłńśćźżó-]{1,25}$/']],
-        'country' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-        'jezyki' => ['filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS, 'flags' => FILTER_REQUIRE_ARRAY],
-        'age' => ['filter' => FILTER_VALIDATE_INT, 'options' => ['min_range' => 0]],
-        'mail' => FILTER_VALIDATE_EMAIL,
-
-        //-------------------------
         'order_type' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         'position' => ['filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS, 'flags' => FILTER_REQUIRE_ARRAY],
         'name' => ['filter' => FILTER_VALIDATE_REGEXP,
