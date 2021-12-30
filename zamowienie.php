@@ -83,6 +83,17 @@
         <p>UWAGA: płatność tylko przy odbiorze!</p>
       </fieldset>
     </form>
+    <?php
+      if(filter_input(INPUT_POST, "submit")){
+        $action = filter_input(INPUT_POST, "submit");
+        switch ($action){
+            case "Zamawiam": {
+                $form_1->insertToDB($db);
+                break;
+            }
+        }
+      }
+    ?>
   </main>
   <?php
     include_once 'snippets/footer.php';
