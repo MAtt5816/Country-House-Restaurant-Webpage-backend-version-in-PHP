@@ -29,7 +29,7 @@
   <main>
     <button type="button" name="load" id="load">Załaduj poprzednie zamówienie</button>
     <h2>Formularz zamówienia</h2>
-    <form action="mailto:mateusz.szewczyk@pollub.edu.pl" method="post">
+    <form action="zamowienie.php" method="post">
       <input type="hidden" name="mode" id="mode" value="new">
       <fieldset class="visibility" id="cart">
         <fieldset>
@@ -79,7 +79,7 @@
           </select>
         </fieldset>
         <textarea name="comments" rows="3" cols="80" placeholder="Uwagi do zamówienia"></textarea>
-        <input type="submit" value="Zamawiam">
+        <input type="submit" name="submit" value="Zamawiam">
         <p>UWAGA: płatność tylko przy odbiorze!</p>
       </fieldset>
     </form>
