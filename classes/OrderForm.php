@@ -15,7 +15,7 @@
           'options' => ['regexp' => '/^\d{9}$|^$|^\0$/']],
         'time' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         'hour' => ['filter' => FILTER_VALIDATE_REGEXP,
-          'options' => ['regexp' => '/^[0-5]\d{1}\:[0-5]\d{1}}$|^$|^\0$/']],
+          'options' => ['regexp' => '/^[0-5]{1}\d{1}\:[0-5]{1}\d{1}$|^$|^\0$/']],
         'date' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^\d{4}\-\d{2}\-\d{2}$|^$|^\0$/']],
         'street' => ['filter' => FILTER_VALIDATE_REGEXP,
