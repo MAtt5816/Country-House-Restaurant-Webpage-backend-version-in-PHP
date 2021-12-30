@@ -1,5 +1,7 @@
 <?php
-  class Menu
+  include_once 'Form.php';
+
+  class Menu extends Form
   {
     private $category;
 
