@@ -14,12 +14,13 @@
     public function validation($filter_array){
       $args = $filter_array;
       $data = filter_input_array(INPUT_POST, $args);
-      var_dump($dane);   //tmp func.
+      var_dump($data);   //tmp func.
       echo "<br />";    //tmp
 
       $errors = "";
       foreach ($data as $key => $val) {
-          if ($val === false or $val === NULL) {
+        //  if ($val === false or $val === NULL) {
+            if ($val === false){
               $errors .= $key . " ";
           }
       }
