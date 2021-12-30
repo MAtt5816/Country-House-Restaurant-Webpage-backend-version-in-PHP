@@ -33,7 +33,7 @@
       <input type="hidden" name="mode" id="mode" value="new">
       <fieldset class="visibility" id="cart">
         <fieldset>
-          <input type="radio" name="order_type" value="takeway" id="takeway" required><label for="takeway">Na wynos</label>
+          <input type="radio" name="order_type" value="takeaway" id="takeaway" required><label for="takeaway">Na wynos</label>
           <input type="radio" name="order_type" value="delivery" id="delivery"><label for="delivery">Dostawa na adres</label>
         </fieldset>
         <fieldset id="menu_positions">
