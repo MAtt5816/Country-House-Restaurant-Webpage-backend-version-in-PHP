@@ -17,7 +17,7 @@
       echo "<fieldset>";
       $content = "<legend>$cat</legend>";
       foreach ($result as $value) {
-        $content .= '<input type="checkbox" name="'.$value['name_tag'].'" id="'.$value['name_tag'].'">';
+        $content .= '<input type="checkbox" name="position[]" value="'.$value['name_tag'].'" id="'.$value['name_tag'].'">';
         $content .= '<div class="menuPosition" id="div_'.$value['name_tag'].'">';
         $content .= '<label for="'.$value['name_tag'].'"><span class="menuPosition_element dish_name">';
         $content .= $value['nazwa'].'</span>';
