@@ -57,7 +57,6 @@
     {
       Form::__destruct();
       Menu::__destruct();
-      echo "destruct";   //tmp
     }
   }
 ?>
