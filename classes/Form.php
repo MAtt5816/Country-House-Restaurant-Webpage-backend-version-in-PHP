@@ -30,31 +30,8 @@
       }
     }
 
-    function insertToDB($bd){
-        $data = $this->validation($this->filter_array);
-        if($data != ""){
-            $positions = "";
-            foreach ($data['position'] as $val){
-                $positions .= $val.",";
-            }
-            $positions = substr_replace($positions, "", -1);
-            $data['position'] = $positions;
-
-            $string = "";
-            foreach ($data as $val){
-                $string .='"'.$val.'", ';
-            }
-            $string = substr_replace($string, "", -2, 2);
-            $sql = "";
-
-            if($bd->insert($sql)){
-                echo "Dodano do bazy";
-            }
-            else{
-              echo "Błąd dodania do bazy";
-            }
-        }
-    }
+    function insertToDB($bd)
+    {}
 
     function __destruct()
     {}
