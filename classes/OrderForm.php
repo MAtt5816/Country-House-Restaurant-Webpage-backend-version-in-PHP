@@ -61,15 +61,15 @@
           $positions = substr_replace($positions, "", -1);
           $data['position'] = $positions;
 
-          if(isset($data['day']) && $data['hour']){
-              $datatime = $data['day'] + $data['hour'];
-              $data += ['datatime' => $datatime];
+          if(isset($data['day']) && isset($data['hour'])){
+              $datetime = $data['day'] + $data['hour'];
+              $data += ['datetime' => $datetime];
           }
           elseif (isset($data['day'])) {
-              $data += ['datatime' => $data['day']];
+              $data += ['datetime' => $data['day']];
           }
           elseif (isset($data['hour'])) {
-              $data += ['datatime' => $data['hour']];
+              $data += ['datetime' => $data['hour']];
           }
           unset($data['date']);
           unset($data['hour']);
