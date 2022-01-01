@@ -103,7 +103,6 @@
 
               foreach($sql as $key => $query){
                   $query = str_replace("last_id", $last_id, $query);
-                  printf($last_id);echo $query;
                   if ($key !== array_key_first($sql)){
                     if (!($db->insert($query))){
                       throw new Exception();
