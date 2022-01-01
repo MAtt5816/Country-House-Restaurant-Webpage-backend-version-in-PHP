@@ -20,6 +20,22 @@
       $this->mysqli->close();
     }
 
+    public function last_id(){
+      return $this->mysqli->insert_id;
+    }
+
+    public function transaction(){
+      return $this->mysqli->begin_transaction();
+    }
+
+    public function rollback(){
+      return $this->mysqli->rollback();
+    }
+
+    public function commit(){
+      return $this->mysqli->commit();
+    }
+
     public function select($sql, $fields) {
         // $sql arg – SELECT query
         // $fields arg - array with fields names in DB
