@@ -83,7 +83,6 @@
           $string = substr_replace($string, "", -2, 2);
 
           list($type, $order, $name, $surname, $tel, $realisation, $street, $number, $payment, $comment, $realisation_date) = explode(", ", $string);
-          echo $realisation_date." ".$data['datetime'];
           $sql = [
               "INSERT INTO `zamowienie`(`ID`, `user_ID`, `typ`, `daneKlienta_ID`, `czasRealizacji_typ`, `dataRealizacji`, `adres_ID`, `uwagi`, `platnosc`)
                   VALUES (NULL, 1, $type, 1, $realisation, STR_TO_DATE($realisation_date, \"%Y-%m-%d %H:%i\"), 1, $comment, $payment);",        //TODO  // replace static ID
