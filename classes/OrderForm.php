@@ -53,7 +53,6 @@
 
     function insertToDB($db){
       $data = $this->validation($this->filter_array);
-      var_dump($data); //tmp
       if($data != ""){
           $positions = "";
           foreach ($data['position'] as $val){
