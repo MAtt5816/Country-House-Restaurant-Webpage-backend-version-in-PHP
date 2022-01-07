@@ -86,7 +86,7 @@
           echo $realisation_date." ".$data['datetime'];
           $sql = [
               "INSERT INTO `zamowienie`(`ID`, `user_ID`, `typ`, `daneKlienta_ID`, `czasRealizacji_typ`, `dataRealizacji`, `adres_ID`, `uwagi`, `platnosc`)
-                  VALUES (NULL, 1, $type, 1, $realisation, $realisation_date, 1, $comment, $payment);",        //TODO  // replace static ID
+                  VALUES (NULL, 1, $type, 1, $realisation, STR_TO_DATE($realisation_date, \"%Y-%m-%d %H:%i\"), 1, $comment, $payment);",        //TODO  // replace static ID
               "INSERT INTO `lista_pozycji`(`zamowienie_ID`, `menu_ID`, `ilosc`)
                   VALUES (last_id, 1, 2), (last_id, 5, 3);"
           ];
