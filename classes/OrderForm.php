@@ -63,7 +63,7 @@
           $data['position'] = $positions;
 
           if(isset($data['day']) && isset($data['hour'])){
-              $datetime = $data['day'] + $data['hour'];
+              $datetime = $data['day']." ".$data['hour'];
               $data += ['datetime' => $datetime];
           }
           elseif (isset($data['day'])) {
@@ -72,7 +72,7 @@
           elseif (isset($data['hour'])) {
               $data += ['datetime' => $data['hour']];
           }
-          unset($data['date']);
+          unset($data['day']);
           unset($data['hour']);
 
           $string = "";
