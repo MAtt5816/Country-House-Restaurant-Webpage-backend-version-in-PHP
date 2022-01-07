@@ -11,12 +11,12 @@
           'options' => ['regexp' => '/^[A-Za-z]\D+$/']],
         'surname' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^[A-Za-z]\D+$/']],
-        'tel' => ['filter' => FILTER_VALIDATE_REGEXP,
+        'phone' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^\d{9}$|^$|^\0$/']],
         'time' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         'hour' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^[0-5]{1}\d{1}\:[0-5]{1}\d{1}$|^$|^\0$/']],
-        'date' => ['filter' => FILTER_VALIDATE_REGEXP,
+        'day' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^\d{4}\-\d{2}\-\d{2}$|^$|^\0$/']],
         'street' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^[A-Za-z0-9]{1}[0-9A-Za-z\/ \.\,\'-]{0,99}$|^$|^\0$/']],
@@ -53,6 +53,7 @@
 
     function insertToDB($db){
       $data = $this->validation($this->filter_array);
+      var_dump($data); //tmp
       if($data != ""){
           $positions = "";
           foreach ($data['position'] as $val){
@@ -82,7 +83,7 @@
           $string = substr_replace($string, "", -2, 2);
 
           list($type, $order, $name, $surname, $tel, $realisation, $street, $number, $payment, $comment, $realisation_date) = explode(", ", $string);
-
+          echo $realisation_date." ".$data['datetime'];
           $sql = [
               "INSERT INTO `zamowienie`(`ID`, `user_ID`, `typ`, `daneKlienta_ID`, `czasRealizacji_typ`, `dataRealizacji`, `adres_ID`, `uwagi`, `platnosc`)
                   VALUES (NULL, 1, $type, 1, $realisation, $realisation_date, 1, $comment, $payment);",        //TODO  // replace static ID
