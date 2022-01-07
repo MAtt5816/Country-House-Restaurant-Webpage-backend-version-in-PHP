@@ -86,6 +86,7 @@ nav a {
 nav>ul {
   display: flex;
   flex-flow: row wrap;
+  padding: 0 40px;
 }
 
 nav>ul li {
@@ -291,6 +292,10 @@ main>.contact a {
 
 
 @media screen and (min-width: 655px) {
+  nav>ul li:last-child {
+    margin-left: auto;
+  }
+
   footer{
     grid-template-areas:
       '. links contact .'
@@ -300,6 +305,10 @@ main>.contact a {
 }
 
 @media screen and (max-width: 654px) {
+  nav>ul li:last-child {
+    margin-left: 3px;
+  }
+
   footer {
     grid-template-areas:
       '. links .'
