@@ -9,7 +9,7 @@
     </ul></li>
     <li><a href="zamowienie.php">Zamów online</a></li>
     <li><a href="kontakt.php">Kontakt</a></li>
-    <li><a href="#" id="login">Zaloguj</a></li>
+    <li><a href="panel.php" id="login">Zaloguj</a></li>
   </ul>
   ';
 ?>
