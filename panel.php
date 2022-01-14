@@ -27,7 +27,10 @@
         <fieldset class="visibility">
         <?php
           include_once 'classes/LoginForm.php';
-          $loginForm = new LoginForm();
+          include_once 'classes/RegistrationForm.php';
+
+      //    $loginForm = new LoginForm(); //tmp comment - then uncomment
+          $registrationForm = new RegistrationForm();
         ?>
         </fieldset>
       </form>
