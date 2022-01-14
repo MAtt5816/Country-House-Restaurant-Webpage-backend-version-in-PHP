@@ -57,15 +57,15 @@
           <legend>Dane osoby zamawiającej</legend>
           <label for="name">Imię: </label><input type="text" name="name" id="name" pattern="^([A-Za-z][ ]?)+$" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required>
           <label for="surname">Nazwisko: </label><input type="text" name="surname" id="surname" pattern="^([A-Za-z][ -]?)+$" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required>
-          <label for="phone">Nr telefonu: </label><input type="tel" name="phone" id="phone" pattern="^\d{9}" title="Podaj dziewięć cyfr bez spacji i innych znaków." required>
+          <label for="phone">Nr telefonu: </label><input type="tel" name="phone" id="phone" pattern="^\d{9}$" title="Podaj dziewięć cyfr bez spacji i innych znaków." required>
         </fieldset>
         <fieldset>
           <legend>Czas realizacji</legend>
           <input type="radio" name="time" value="asap" id="asap" required><label for="asap">Jak najszybciej</label>
           <input type="radio" name="time" value="date" id="date"><label for="date">Wybieram przewidywany czas realizacji</label><br>
           <span id="data_time">
-            <label for="hour">Godzina: </label><input type="time" name="hour" id="hour" pattern="\d{2}\:\d{2}">
-            <label for="day">Data: </label><input type="date" name="day" id="day" pattern="\d{4}\-\d{2}\-\d{2}">
+            <label for="hour">Godzina: </label><input type="time" name="hour" id="hour" pattern="^\d{2}\:\d{2}$">
+            <label for="day">Data: </label><input type="date" name="day" id="day" pattern="^\d{4}\-\d{2}\-\d{2}$">
           </span>
         </fieldset>
         <fieldset id="address">
