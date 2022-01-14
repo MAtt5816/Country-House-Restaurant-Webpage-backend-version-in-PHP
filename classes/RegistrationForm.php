@@ -18,7 +18,7 @@
           <input type="submit" name="submit" value="Zarejestruj">
           <input type="reset" name="reset" value="Wyczyść">
           <label for="register">Masz już konto? Zaloguj się:</label>
-          <input type="submit" name="register" value="Zaloguj się" formnovalidate>
+          <input type="submit" name="else_login" value="Zaloguj się" formnovalidate>
       ';
     }
   }
