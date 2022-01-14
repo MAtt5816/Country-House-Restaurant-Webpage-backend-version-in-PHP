@@ -29,8 +29,12 @@
           include_once 'classes/LoginForm.php';
           include_once 'classes/RegistrationForm.php';
 
-      //    $loginForm = new LoginForm(); //tmp comment - then uncomment
-          $registrationForm = new RegistrationForm();
+          if(isset($_POST['register'])){
+            $registrationForm = new RegistrationForm();
+          }
+          else{
+             $loginForm = new LoginForm();
+          }
         ?>
         </fieldset>
       </form>
