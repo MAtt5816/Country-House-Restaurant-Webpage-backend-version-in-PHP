@@ -55,8 +55,8 @@
       <fieldset class="visibility" id="details">
         <fieldset>
           <legend>Dane osoby zamawiającej</legend>
-          <label for="name">Imię: </label><input type="text" name="name" id="name" pattern="^[A-Za-z]\D+" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required>
-          <label for="surname">Nazwisko: </label><input type="text" name="surname" id="surname" pattern="^[A-Za-z]\D+" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required>
+          <label for="name">Imię: </label><input type="text" name="name" id="name" pattern="^([A-Za-z][ ]?)+$" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required>
+          <label for="surname">Nazwisko: </label><input type="text" name="surname" id="surname" pattern="^([A-Za-z][ -]?)+$" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required>
           <label for="phone">Nr telefonu: </label><input type="tel" name="phone" id="phone" pattern="^\d{9}" title="Podaj dziewięć cyfr bez spacji i innych znaków." required>
         </fieldset>
         <fieldset>
