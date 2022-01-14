@@ -23,10 +23,14 @@
       </div>
     </header>
     <main>
-      <?php
-        include_once 'classes/LoginForm.php';
-        $loginForm = new LoginForm();
-      ?>
+      <form action="panel.php" method="post">
+        <fieldset class="visibility">
+        <?php
+          include_once 'classes/LoginForm.php';
+          $loginForm = new LoginForm();
+        ?>
+        </fieldset>
+      </form>
     </main>
     <?php
       include_once 'snippets/footer.php';
