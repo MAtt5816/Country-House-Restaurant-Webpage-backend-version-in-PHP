@@ -21,5 +21,4 @@
       session_destroy();
     }
   }
-
 ?>
