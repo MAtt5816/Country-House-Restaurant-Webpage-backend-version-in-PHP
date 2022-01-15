@@ -12,7 +12,6 @@
     }
 
     public function login(){
-      session_start();
       $this->sessionID = session_id();
       $user = new UserLogged($this->userID);
       $_SESSION['userID'] = serialize($user);
