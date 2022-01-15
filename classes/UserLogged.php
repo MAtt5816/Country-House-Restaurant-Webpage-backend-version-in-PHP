@@ -5,14 +5,20 @@
   class UserLogged
   {
     private $userID;
+    private $sessionID;
     function __construct($userID)
     {
       $this->userID = $userID;
-      session_start();
-      $_SESSION['userID'] = $userID;
     }
 
-    function __destruct()
+    public function login(){
+      session_start();
+      $this->sessionID = session_id();
+      $user = new UserLogged($userID);
+      $_SESSION['userID'] = serialize($user);
+    }
+
+    public function logout()
     {
       $_SESSION = [];
       if (filter_input(INPUT_COOKIE, session_name())) {
