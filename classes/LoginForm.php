@@ -61,5 +61,9 @@
         }
       }
     }
+
+    public function logout(){
+      UserLogged::logout();
+    }
   }
 ?>

@@ -1,4 +1,11 @@
 <?php
+  $login_button = "Zaloguj";
+  if(isset($is_session)){
+    if($is_session){
+      $login_button = "Wyloguj";
+    }
+  }
+  
   echo '
   <ul>
     <li><a href="index.php">Strona główna</a></li>
@@ -9,7 +16,7 @@
     </ul></li>
     <li><a href="zamowienie.php">Zamów online</a></li>
     <li><a href="kontakt.php">Kontakt</a></li>
-    <li><a href="panel.php" id="login">Zaloguj</a></li>
+    <li><a href="panel.php?form='.$login_button.'" id="login">'.$login_button.'</a></li>
   </ul>
   ';
 ?>

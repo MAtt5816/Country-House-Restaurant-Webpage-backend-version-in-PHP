@@ -54,6 +54,13 @@
         if($is_session){
           echo "session OK"; //tmp
         }
+
+        if(isset($_GET['form'])){
+          if($_GET['form'] == 'Wyloguj'){
+            $loginForm->logout();
+            header("Refresh: 0; panel.php?form=Zaloguj");
+          }
+        }
         ?>
         </fieldset>
       </form>
