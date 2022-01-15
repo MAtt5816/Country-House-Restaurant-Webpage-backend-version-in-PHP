@@ -1,8 +1,14 @@
 <?php
   include_once 'Form.php';
+  include_once 'UserLogged.php';
 
   class LoginForm extends Form
   {
+    protected  $filter_array = array(
+      'login' => FILTER_SANITIZE_ADD_SLASHES,
+      'password' => FILTER_SANITIZE_ADD_SLASHES
+    );
+
     function __construct()
     {
       echo '
@@ -14,6 +20,46 @@
           <label for="register">Nie masz konta? Załóż je:</label>
           <input type="submit" name="register" value="Zarejestruj się" formnovalidate>
       ';
+
+      Form::__construct($this->filter_array);
+    }
+
+    public function login($db){
+      $data = $this->validation($this->filter_array);
+      if($data != ""){
+        $login = $data['login'];
+        $pass = hash('sha256', $data['password']);
+
+        $sql = "SELECT `ID`, `password` FROM `user` WHERE `login` LIKE '{$login}'";
+        $fields = ['ID','password'];
+        $result = array();
+        try{
+          if($db->select($sql, $fields) != 0){
+              $result = $db->select($sql, $fields);
+          }
+          else{
+              throw new Exception();
+          }
+        }
+        catch (Exception | mysqli_sql_exception $exception){
+            $db->rollback();
+            echo "Błąd logowania";
+        }
+
+        if(!empty($result)){
+          $value = $result[0];
+          $userID = $value['ID'];
+          $password = $value['password'];
+          if($pass === $password){
+            $log = new UserLogged($userID);
+            $log->login();
+            header("Refresh:0");
+          }
+          else{
+            echo 'Niewłaściwe dane logowania';
+          }
+        }
+      }
     }
   }
 ?>

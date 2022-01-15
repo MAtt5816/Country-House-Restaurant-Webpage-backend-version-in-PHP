@@ -1,3 +1,13 @@
+<?php
+  if(!isset($_SESSION))
+    {
+      session_start();
+    }
+  $is_session = false;
+  if(isset($_SESSION['userID'])){
+    $is_session = true;
+  }
+?>
 <!DOCTYPE html>
 <html lang="pl" dir="ltr">
   <head>
@@ -26,6 +36,7 @@
       <form action="panel.php" method="post">
         <fieldset class="visibility">
         <?php
+        include_once 'classes/Database.php';
           include_once 'classes/LoginForm.php';
           include_once 'classes/RegistrationForm.php';
 
@@ -33,7 +44,15 @@
             $registrationForm = new RegistrationForm();
           }
           else{
-             $loginForm = new LoginForm();
+            $loginForm = new LoginForm();
+            if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['password'])){
+              $db = new Database("localhost","root","","restauracja");
+              $loginForm->login($db);
+            }
+          }
+
+          if($is_session){
+            echo "session OK"; //tmp
           }
         ?>
         </fieldset>
