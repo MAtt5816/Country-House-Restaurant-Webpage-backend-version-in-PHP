@@ -24,6 +24,10 @@
       Form::__construct($this->filter_array);
     }
 
+    function __destruct(){
+      Form::__destruct();
+    }
+
     public function login($db){
       $data = $this->validation($this->filter_array);
       if($data != ""){
