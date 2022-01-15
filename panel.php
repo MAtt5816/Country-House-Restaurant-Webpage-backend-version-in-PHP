@@ -37,23 +37,23 @@
         <fieldset class="visibility">
         <?php
         include_once 'classes/Database.php';
-          include_once 'classes/LoginForm.php';
-          include_once 'classes/RegistrationForm.php';
+        include_once 'classes/LoginForm.php';
+        include_once 'classes/RegistrationForm.php';
 
-          if(isset($_POST['register'])){
-            $registrationForm = new RegistrationForm();
+        if(isset($_POST['register'])){
+          $registrationForm = new RegistrationForm();
+        }
+        else{
+          $loginForm = new LoginForm();
+          if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['password'])){
+            $db = new Database("localhost","root","","restauracja");
+            $loginForm->login($db);
           }
-          else{
-            $loginForm = new LoginForm();
-            if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['password'])){
-              $db = new Database("localhost","root","","restauracja");
-              $loginForm->login($db);
-            }
-          }
+        }
 
-          if($is_session){
-            echo "session OK"; //tmp
-          }
+        if($is_session){
+          echo "session OK"; //tmp
+        }
         ?>
         </fieldset>
       </form>
