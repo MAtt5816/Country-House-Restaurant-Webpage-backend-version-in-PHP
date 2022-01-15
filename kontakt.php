@@ -1,3 +1,13 @@
+<?php
+  if(!isset($_SESSION))
+    {
+      session_start();
+    }
+  $is_session = false;
+  if(isset($_SESSION['userID'])){
+    $is_session = true;
+  }
+?>
 <!DOCTYPE html>
 <html lang="pl" dir="ltr">
   <head>
