@@ -45,10 +45,13 @@
             $count_fields = count($fields); //how many fileds
             $count_rows = $result->num_rows; //how many rows
             $j = 0;
+            $content = array();
             while ($row = $result->fetch_object()) {
+                $content[] = array();
                 for ($i = 0; $i < $count_fields; $i++) {
                     $p = $fields[$i];
-                    $content[$j][$p] = $row->$p;
+                    $q = $row->$p;
+                    $content[$j] += [$p => $q];
                 }
                 $j++;
             }
