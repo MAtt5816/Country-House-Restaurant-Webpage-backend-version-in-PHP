@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Sty 2022, 15:00
+-- Czas generowania: 15 Sty 2022, 20:06
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.11
 
@@ -80,40 +80,12 @@ CREATE TABLE `lista_pozycji` (
 --
 
 INSERT INTO `lista_pozycji` (`zamowienie_ID`, `menu_ID`, `ilosc`) VALUES
-(39, 1, 2),
-(39, 5, 3),
-(40, 1, 2),
-(40, 5, 3),
-(41, 1, 2),
-(41, 5, 3),
-(42, 1, 2),
-(42, 5, 3),
-(43, 1, 2),
-(43, 5, 3),
-(44, 1, 2),
-(44, 5, 3),
-(45, 1, 2),
-(45, 5, 3),
-(46, 1, 2),
-(46, 5, 3),
-(47, 1, 2),
-(47, 5, 3),
-(48, 1, 2),
-(48, 5, 3),
-(49, 1, 2),
-(49, 5, 3),
-(50, 1, 2),
-(50, 5, 3),
-(51, 1, 2),
-(51, 5, 3),
-(52, 1, 2),
-(52, 5, 3),
-(53, 1, 2),
-(53, 5, 3),
-(54, 1, 2),
-(54, 5, 3),
-(55, 1, 2),
-(55, 5, 3);
+(66, 1, 2),
+(66, 5, 3),
+(67, 1, 2),
+(67, 5, 3),
+(68, 1, 2),
+(68, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -187,7 +159,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `login`, `password`) VALUES
-(1, 'ama', 'qwerty');
+(1, 'ama', '65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5');
 
 -- --------------------------------------------------------
 
@@ -213,23 +185,10 @@ CREATE TABLE `zamowienie` (
 --
 
 INSERT INTO `zamowienie` (`ID`, `user_ID`, `data`, `typ`, `daneKlienta_ID`, `czasRealizacji_typ`, `dataRealizacji`, `adres_ID`, `uwagi`, `platnosc`) VALUES
-(39, 1, '2022-01-01 13:32:26', 'takeaway', 1, 'ASAP', '0000-00-00 00:00:00', 1, '', 'cash'),
-(40, 1, '2022-01-01 13:41:45', 'takeaway', 1, 'ASAP', '0000-00-00 00:00:00', 1, '', 'cash'),
-(41, 1, '2022-01-01 13:42:19', 'delivery', 1, 'date', '0000-00-00 00:00:00', 1, 'dfsgf', 'card'),
-(42, 1, '2022-01-01 13:44:45', 'delivery', 1, 'date', '0000-00-00 00:00:00', 1, 'dfsgf', 'card'),
-(43, 1, '2022-01-01 13:45:39', 'delivery', 1, 'date', '0000-00-00 00:00:00', 1, 'dfsgf', 'card'),
-(44, 1, '2022-01-01 13:46:10', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, 'dfdsf', 'card'),
-(45, 1, '2022-01-01 13:47:30', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, 'dfdsf', 'card'),
-(46, 1, '2022-01-01 13:48:07', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, 'dfdsf', 'card'),
-(47, 1, '2022-01-01 13:48:30', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, 'dfdsf', 'card'),
-(48, 1, '2022-01-01 13:48:58', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, 'dfdsf', 'card'),
-(49, 1, '2022-01-01 13:48:59', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, 'dfdsf', 'card'),
-(50, 1, '2022-01-01 13:50:17', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, 'dfdsf', 'card'),
-(51, 1, '2022-01-01 13:50:33', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, 'dfdsf', 'card'),
-(52, 1, '2022-01-01 13:51:04', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, 'dfdsf', 'card'),
-(53, 1, '2022-01-01 13:51:51', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, 'dfdsf', 'card'),
-(54, 1, '2022-01-01 13:52:17', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, 'dfdsf', 'card'),
-(55, 1, '2022-01-01 13:52:50', 'takeaway', 1, 'date', '0000-00-00 00:00:00', 1, '', 'cash');
+(65, 1, '2022-01-07 10:21:18', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash'),
+(66, 1, '2022-01-07 10:26:30', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash'),
+(67, 1, '2022-01-07 10:29:54', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash'),
+(68, 1, '2022-01-07 10:30:48', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -309,7 +268,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT dla tabeli `zamowienie`
 --
 ALTER TABLE `zamowienie`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- Ograniczenia dla zrzutów tabel
