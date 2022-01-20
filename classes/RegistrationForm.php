@@ -3,6 +3,21 @@
 
   class RegistrationForm extends Form
   {
+    protected  $filter_array = array(
+      'name' => ['filter' => FILTER_VALIDATE_REGEXP,
+        'options' => ['regexp' => '/^([A-Za-z][ ]?)+$/']],
+      'surname' => ['filter' => FILTER_VALIDATE_REGEXP,
+        'options' => ['regexp' => '/^([A-Za-z][ ]?)+$/']],
+      'phone' => ['filter' => FILTER_VALIDATE_REGEXP,
+        'options' => ['regexp' => '/^\d{9}$|^$|^\0$/']],
+      'street' => FILTER_SANITIZE_ADD_SLASHES,
+      'number' => ['filter' => FILTER_VALIDATE_REGEXP,
+        'options' => ['regexp' => '/^[A-Za-z0-9\/\. ]{,6}|^$|^\0$/']],
+      'login' => FILTER_SANITIZE_ADD_SLASHES,
+      'password' => FILTER_SANITIZE_ADD_SLASHES,
+      'repeat' => FILTER_SANITIZE_ADD_SLASHES
+    );
+
     function __construct()
     {
       echo '
@@ -20,6 +35,12 @@
           <label for="register">Masz już konto? Zaloguj się:</label>
           <input type="submit" name="else_login" value="Zaloguj się" formnovalidate>
       ';
+
+      Form::__construct($this->filter_array);
+    }
+
+    __destruct(){
+      Form::__destruct();
     }
   }
 ?>
