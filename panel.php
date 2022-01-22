@@ -40,15 +40,10 @@
         include_once 'classes/LoginForm.php';
         include_once 'classes/RegistrationForm.php';
 
+        $db = new Database("localhost","root","","restauracja");
+
         if(isset($_POST['register'])){
-          $registrationForm = new RegistrationForm();
-        }
-        else{
-          $loginForm = new LoginForm();
-          if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['password'])){
-            $db = new Database("localhost","root","","restauracja");
-            $loginForm->login($db);
-          }
+          header("Refresh: 0; panel.php?form=Zarejestruj");
         }
 
         if(filter_input(INPUT_POST, "submit")){
@@ -67,9 +62,18 @@
         }
 
         if(isset($_GET['form'])){
-          if($_GET['form'] == 'Wyloguj'){
+          if($_GET['form'] == "Zarejestruj"){
+            $registrationForm = new RegistrationForm();
+          }
+          else if($_GET['form'] == 'Wyloguj'){
             $loginForm->logout();
-            header("Refresh: 0; panel.php?form=Zaloguj");
+            header("Refresh: 0; panel.php");
+          }
+        }
+        else{
+          $loginForm = new LoginForm();
+          if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['password'])){
+            $loginForm->login($db);
           }
         }
         ?>
