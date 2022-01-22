@@ -64,6 +64,7 @@
         if(isset($_GET['form'])){
           if($_GET['form'] == "Zarejestruj"){
             $registrationForm = new RegistrationForm();
+            $registrationForm->show();
           }
           else if($_GET['form'] == 'Wyloguj'){
             $loginForm->logout();

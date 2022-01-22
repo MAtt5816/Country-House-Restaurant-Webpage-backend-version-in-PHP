@@ -20,6 +20,14 @@
 
     function __construct()
     {
+      Form::__construct($this->filter_array);
+    }
+
+    function __destruct(){
+      Form::__destruct();
+    }
+
+    public function show(){
       echo '
           <h3>Formularz rejestracji</h3>
           <input type="text" name="name" placeholder="imię" pattern="^([A-Za-z][ ]?)+$" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required><br />
@@ -35,12 +43,6 @@
           <label for="register">Masz już konto? Zaloguj się:</label>
           <input type="submit" name="else_login" value="Zaloguj się" formnovalidate>
       ';
-
-      Form::__construct($this->filter_array);
-    }
-
-    function __destruct(){
-      Form::__destruct();
     }
 
     public function regiter($db){
