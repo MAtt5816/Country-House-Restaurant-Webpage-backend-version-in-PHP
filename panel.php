@@ -51,6 +51,17 @@
           }
         }
 
+        if(filter_input(INPUT_POST, "submit")){
+          $action = filter_input(INPUT_POST, "submit");
+          switch ($action){
+              case "Zarejestruj": {
+                  $registrationForm = new RegistrationForm();
+                  $registrationForm->regiter($db);
+                  break;
+              }
+          }
+        }
+
         if($is_session){
           echo "session OK"; //tmp
         }
