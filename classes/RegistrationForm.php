@@ -12,7 +12,7 @@
         'options' => ['regexp' => '/^\d{9}$|^$|^\0$/']],
       'street' => FILTER_SANITIZE_ADD_SLASHES,
       'number' => ['filter' => FILTER_VALIDATE_REGEXP,
-        'options' => ['regexp' => '/^[A-Za-z0-9\/\. ]{,6}|^$|^\0$/']],
+        'options' => ['regexp' => '/^[A-Za-z0-9\/\. ]{0,6}|^$|^\0$/']],
       'login' => FILTER_SANITIZE_ADD_SLASHES,
       'password' => FILTER_SANITIZE_ADD_SLASHES,
       'repeat' => FILTER_SANITIZE_ADD_SLASHES
