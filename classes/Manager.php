@@ -44,9 +44,9 @@
         </div>
         ';
         ?>
-          <button type="submit" name="load" id="load">Twoje dane</button>
-          <button type="submit" name="load" id="load">Twoje adresy</button>
-          <button type="submit" name="load" id="load">Twoje zamówienia</button>
+          <button type="button" name="data" id="data" onclick="location.href='panel.php?form=Konto&card=data'">Twoje dane</button>
+          <button type="button" name="addresses" id="addresses" onclick="location.href='panel.php?form=Konto&card=addresses'">Twoje adresy</button>
+          <button type="button" name="orders" id="orders" onclick="location.href='panel.php?form=Konto&card=orders'">Twoje zamówienia</button>
         <?php
       }
     }
