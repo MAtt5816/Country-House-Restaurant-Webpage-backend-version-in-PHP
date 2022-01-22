@@ -4,8 +4,8 @@
    */
   class UserLogged
   {
-    private $userID;
-    private $sessionID;
+    protected $userID;
+    protected $sessionID;
     function __construct($userID)
     {
       $this->userID = $userID;

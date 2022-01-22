@@ -57,7 +57,7 @@
           if($pass === $password){
             $log = new UserLogged($userID);
             $log->login();
-            header("Refresh:0");
+            header("Refresh:0; panel.php?form=Konto");
           }
           else{
             echo 'Niewłaściwe dane logowania';

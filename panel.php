@@ -39,6 +39,7 @@
         include_once 'classes/Database.php';
         include_once 'classes/LoginForm.php';
         include_once 'classes/RegistrationForm.php';
+        include_once 'classes/Manager.php';
 
         $db = new Database("localhost","root","","restauracja");
 
@@ -57,10 +58,6 @@
           }
         }
 
-        if($is_session){
-          echo "session OK"; //tmp
-        }
-
         if(isset($_GET['form'])){
           if($_GET['form'] == "Zarejestruj"){
             $registrationForm = new RegistrationForm();
@@ -70,6 +67,12 @@
             $loginForm = new LoginForm();
             $loginForm->logout();
             header("Refresh: 0; panel.php");
+          }
+          else if($_GET['form'] == 'Konto'){   //main customer account manager
+            if($is_session){
+              $panel = new Manager();
+              $panel->authorization();
+            }
           }
         }
         else{
