@@ -39,7 +39,7 @@
       Form::__construct($this->filter_array);
     }
 
-    __destruct(){
+    function __destruct(){
       Form::__destruct();
     }
   }
