@@ -46,11 +46,11 @@
     public function regiter($db){
       $data = $this->validation($this->filter_array);
       if($data != ""){
-        if($data['password' === $data['repeat']]){
+        if($data['password']  == $data['repeat']){
           $data['password'] = hash('sha256', $data['password']);
 
           foreach ($data as $value) {
-            $string .='"'.$val.'", ';
+            $string .='"'.$value.'", ';
           }
 
           $string = substr_replace($string, "", -2, 2);
