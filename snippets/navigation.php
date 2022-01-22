@@ -1,9 +1,7 @@
 <?php
-  $login_link = "";
   $login_button = "Zaloguj";
   if(isset($is_session)){
     if($is_session){
-      $login_link = "?form=Wyloguj";
       $login_button = "Wyloguj";
     }
   }
@@ -17,8 +15,17 @@
       <li><a href="menu.php#maczne">Potrawy mączne</a></li>
     </ul></li>
     <li><a href="zamowienie.php">Zamów online</a></li>
-    <li><a href="kontakt.php">Kontakt</a></li>
-    <li><a href="panel.php'.$login_link.'" id="login">'.$login_button.'</a></li>
-  </ul>
-  ';
+    <li><a href="kontakt.php">Kontakt</a></li>';
+  if($login_button == "Zaloguj"){
+    echo '<li><a href="panel.php" id="login">'.$login_button.'</a></li>';
+  }
+  else{
+    echo '
+    <li><a href="panel.php?form=Konto">Konto</a><ul>
+      <li><a href="panel.php?form=Konto">Moje konto</a></li>
+      <li><a href="panel.php?form=Wyloguj">Wyloguj</a></li>
+    </ul></li>
+    ';
+  }
+  echo '</ul>';
 ?>
