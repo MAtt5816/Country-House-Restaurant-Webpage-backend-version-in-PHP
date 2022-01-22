@@ -72,6 +72,7 @@
             if($is_session){
               $panel = new Manager();
               $panel->authorization();
+              $panel->show($db);
             }
           }
         }
