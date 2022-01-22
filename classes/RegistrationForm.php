@@ -42,5 +42,62 @@
     function __destruct(){
       Form::__destruct();
     }
+
+    public function regiter($db){
+      $data = $this->validation($this->filter_array);
+      if($data != ""){
+        if($data['password' === $data['repeat']]){
+          $data['password'] = hash('sha256', $data['password']);
+
+          foreach ($data as $value) {
+            $string .='"'.$val.'", ';
+          }
+
+          $string = substr_replace($string, "", -2, 2);
+
+          list($name, $surname, $tel, $street, $number, $login, $password, $repeat) = explode(", ", $string);
+
+          $sql = [
+              "INSERT INTO `user`(`ID`, `login`, `password`)
+                  VALUES (NULL, $login, $password);",
+              "INSERT INTO `dane_klienta`(`ID`, `user_ID`, `imie`, `nazwisko`, `nr_tel`)
+                  VALUES (NULL, last_id, $name, $surname, $tel);" ,          //TODO remove static userID
+              "INSERT INTO `adres`(`ID`, `user_ID`, `ulica`, `numer`)
+                  VALUES (NULL, last_id, $street, $number);"
+          ];
+
+          $last_id = 0;
+          $is_exception = false;
+          if($db->transaction()){
+            try{
+              if($db->insert($sql[0])){
+                  $last_id = $db->last_id();
+              }
+              else{
+                  throw new Exception();
+              }
+
+              foreach($sql as $key => $query){
+                  $query = str_replace("last_id", $last_id, $query);
+                  if ($key !== array_key_first($sql)){
+                    if (!($db->insert($query))){
+                      throw new Exception();
+                    }
+                  }
+              }
+              $db->commit();
+            }
+            catch (Exception | mysqli_sql_exception $exception){
+                $db->rollback();
+                echo "Błąd dodania do bazy";
+                $is_exception = true;
+            }
+          }
+          if(!($is_exception)){
+              echo "Dodano do bazy";
+          }
+        }
+      }
+    }
   }
 ?>
