@@ -72,7 +72,7 @@
         }
         else{
           $loginForm = new LoginForm();
-          if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['password'])){
+          if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['passwd'])){
             $loginForm->login($db);
           }
         }

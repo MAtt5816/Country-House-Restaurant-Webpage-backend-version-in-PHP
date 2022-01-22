@@ -6,7 +6,7 @@
   {
     protected  $filter_array = array(
       'login' => FILTER_SANITIZE_ADD_SLASHES,
-      'password' => FILTER_SANITIZE_ADD_SLASHES
+      'passwd' => FILTER_SANITIZE_ADD_SLASHES
     );
 
     function __construct()
@@ -14,7 +14,7 @@
       echo '
           <h3>Formularz logowania</h3>
           <input type="text" name="login" placeholder="login" required><br />
-          <input type="password" name="password" placeholder="password" required>
+          <input type="password" name="passwd" placeholder="password" required>
           <input type="submit" name="submit" value="Zaloguj">
           <input type="reset" name="reset" value="Wyczyść">
           <label for="register">Nie masz konta? Załóż je:</label>
@@ -32,7 +32,7 @@
       $data = $this->validation($this->filter_array);
       if($data != ""){
         $login = $data['login'];
-        $pass = hash('sha256', $data['password']);
+        $pass = hash('sha256', $data['passwd']);
 
         $sql = "SELECT `ID`, `password` FROM `user` WHERE `login` LIKE '{$login}'";
         $fields = ['ID','password'];
