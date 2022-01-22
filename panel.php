@@ -67,6 +67,7 @@
             $registrationForm->show();
           }
           else if($_GET['form'] == 'Wyloguj'){
+            $loginForm = new LoginForm();
             $loginForm->logout();
             header("Refresh: 0; panel.php");
           }
