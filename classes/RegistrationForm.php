@@ -100,6 +100,9 @@
               echo "Dodano do bazy";
           }
         }
+        else{
+          echo "Hasła są różne!";
+        }
       }
     }
   }
