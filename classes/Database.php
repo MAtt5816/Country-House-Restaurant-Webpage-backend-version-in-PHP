@@ -61,10 +61,14 @@
     }
 
     public function delete($sql) {
-        // TODO
+        if( $this->mysqli->query($sql)) return true; else return false;
     }
 
     public function insert($sql) {
+        if( $this->mysqli->query($sql)) return true; else return false;
+    }
+
+    public function update($sql) {
         if( $this->mysqli->query($sql)) return true; else return false;
     }
 
