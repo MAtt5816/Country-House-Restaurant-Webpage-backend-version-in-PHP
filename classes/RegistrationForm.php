@@ -49,6 +49,7 @@
         if($data['password']  == $data['repeat']){
           $data['password'] = hash('sha256', $data['password']);
 
+          $string = "";
           foreach ($data as $value) {
             $string .='"'.$value.'", ';
           }
