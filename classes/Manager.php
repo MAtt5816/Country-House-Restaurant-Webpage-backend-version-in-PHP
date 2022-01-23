@@ -125,7 +125,7 @@
         foreach ($result as $key => $val){
             echo "<table id='{$val['ID']}' class='menu_cat'>";
             if($key === 0){
-              echo '<caption>Dane użytkownika</caption>';
+              echo '<caption>Adresy</caption>';
             }
             echo "<tbody>";
             foreach ($val as $k => $value) {
