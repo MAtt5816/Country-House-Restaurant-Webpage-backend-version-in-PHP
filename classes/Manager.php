@@ -92,6 +92,7 @@
             }
             echo '</tbody>';
             echo "</table>";
+            echo "<hr />";
         }
       }
     }
@@ -138,6 +139,7 @@
             }
             echo '</tbody>';
             echo "</table>";
+            echo "<hr />";
         }
       }
     }
