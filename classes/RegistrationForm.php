@@ -29,6 +29,8 @@
 
     public function show(){
       echo '
+      <form action="panel.php" method="post">
+        <fieldset class="visibility">
           <h3>Formularz rejestracji</h3>
           <input type="text" name="name" placeholder="imię" pattern="^([A-Za-z][ ]?)+$" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required><br />
           <input type="text" name="surname" placeholder="nazwisko" pattern="^([A-Za-z][ -]?)+$" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required><br />
@@ -42,6 +44,8 @@
           <input type="reset" name="reset" value="Wyczyść">
           <label for="register">Masz już konto? Zaloguj się:</label>
           <input type="submit" name="else_login" value="Zaloguj się" formnovalidate>
+        </fieldset>
+      </form>
       ';
     }
 
