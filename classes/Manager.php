@@ -50,7 +50,50 @@
     }
 
     public function data($db, $uid){
+      $sql = "SELECT `ID`, `imie`, `nazwisko`, `nr_tel` FROM `dane_klienta` WHERE `user_ID` = $uid";
+      $fields = ['ID','imie','nazwisko','nr_tel'];
 
+      $result = array();
+      $is_error = false;
+      try{
+        if($db->select($sql, $fields) != 0){
+            $result = $db->select($sql, $fields);
+        }
+        else{
+            throw new Exception();
+        }
+      }
+      catch (Exception | mysqli_sql_exception $exception){
+          $db->rollback();
+          $is_error = true;
+          echo "Błąd dostępu do bazy danych";
+      }
+
+      //display user data
+      $labels = [
+        'imie' => 'Imię',
+        'nazwisko' => 'Nazwisko',
+        'nr_tel' => 'Numer telefonu'
+      ];
+      if(!$is_error){
+        foreach ($result as $key => $val){
+            echo "<table id='{$val['ID']}' class='menu_cat'>";
+            if($key === 0){
+              echo '<caption>Dane użytkownika</caption>';
+            }
+            echo "<tbody>";
+            foreach ($val as $k => $value) {
+              if($k !== 'ID'){
+                echo '<tr>';
+                echo '<td><b>'.$labels[$k].'</b>: </td>';
+                echo '<td>'.$value.'</td>';
+                echo '</tr>';
+              }
+            }
+            echo '</tbody>';
+            echo "</table>";
+        }
+      }
     }
 
     public function addresses($db, $uid){
