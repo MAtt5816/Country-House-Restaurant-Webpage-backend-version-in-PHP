@@ -85,7 +85,7 @@
             foreach ($val as $k => $value) {
               if($k !== 'ID'){
                 echo '<tr>';
-                echo '<td><b>'.$labels[$k].'</b>: </td>';
+                echo '<td class="labels"><b>'.$labels[$k].'</b>: </td>';
                 echo '<td>'.$value.'</td>';
                 echo '</tr>';
               }
@@ -97,7 +97,49 @@
     }
 
     public function addresses($db, $uid){
+      $sql = "SELECT `ID`, `user_ID`, `ulica`, `numer` FROM `adres` WHERE `user_ID` = $uid";
+      $fields = ['ID','ulica','numer'];
 
+      $result = array();
+      $is_error = false;
+      try{
+        if($db->select($sql, $fields) != 0){
+            $result = $db->select($sql, $fields);
+        }
+        else{
+            throw new Exception();
+        }
+      }
+      catch (Exception | mysqli_sql_exception $exception){
+          $db->rollback();
+          $is_error = true;
+          echo "Błąd dostępu do bazy danych";
+      }
+
+      //display user address
+      $labels = [
+        'ulica' => 'Ulica',
+        'numer' => 'Nazwisko'
+      ];
+      if(!$is_error){
+        foreach ($result as $key => $val){
+            echo "<table id='{$val['ID']}' class='menu_cat'>";
+            if($key === 0){
+              echo '<caption>Dane użytkownika</caption>';
+            }
+            echo "<tbody>";
+            foreach ($val as $k => $value) {
+              if($k !== 'ID'){
+                echo '<tr>';
+                echo '<td class="labels"><b>'.$labels[$k].'</b>: </td>';
+                echo '<td>'.$value.'</td>';
+                echo '</tr>';
+              }
+            }
+            echo '</tbody>';
+            echo "</table>";
+        }
+      }
     }
 
     public function orders($db, $uid){
