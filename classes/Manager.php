@@ -85,7 +85,7 @@
             foreach ($val as $k => $value) {
               if($k !== 'ID'){
                 echo '<tr>';
-                echo '<td class="labels"><b>'.$labels[$k].'</b>: </td>';
+                echo '<td class="labels"><b>'.$labels[$k].':</b> </td>';
                 echo '<td>'.$value.'</td>';
                 echo '</tr>';
               }
@@ -131,7 +131,7 @@
             foreach ($val as $k => $value) {
               if($k !== 'ID'){
                 echo '<tr>';
-                echo '<td class="labels"><b>'.$labels[$k].'</b>: </td>';
+                echo '<td class="labels"><b>'.$labels[$k].':</b> </td>';
                 echo '<td>'.$value.'</td>';
                 echo '</tr>';
               }
@@ -143,7 +143,82 @@
     }
 
     public function orders($db, $uid){
+      $sql = ["SELECT `zamowienie`.`ID`, `zamowienie`.`data`, `zamowienie`.`typ`, `zamowienie`.`dataRealizacji`, `adres`.`ulica`, `adres`.`numer`, `dane_klienta`.`imie`,
+        `dane_klienta`.`nazwisko`
+        FROM `zamowienie` INNER JOIN `dane_klienta` ON zamowienie.daneKlienta_ID=dane_klienta.ID INNER JOIN `adres` ON zamowienie.adres_ID=adres.ID
+        WHERE zamowienie.user_ID=$uid",
+        "SELECT `zamowienie`.`ID`, `menu`.`nazwa`, `lista_pozycji`.`ilosc`
+          FROM `zamowienie` INNER JOIN `lista_pozycji` ON lista_pozycji.zamowienie_ID=zamowienie.ID INNER JOIN `menu` ON lista_pozycji.menu_ID=menu.ID
+          WHERE zamowienie.user_ID=$uid"
+        ];
 
+      $fields = [
+        ['ID','data','typ','dataRealizacji','ulica','numer','imie','nazwisko'],
+        ['ID','nazwa','ilosc']
+        ];
+
+      $result = array();
+      $is_error = false;
+      try{
+        foreach ($sql as $key => $value) {
+          if($db->select($value, $fields[$key]) != 0){
+              $result[$key] = $db->select($value, $fields[$key]);
+          }
+          else{
+              throw new Exception();
+          }
+        }
+      }
+      catch (Exception | mysqli_sql_exception $exception){
+          $db->rollback();
+          $is_error = true;
+          echo "Błąd dostępu do bazy danych";
+      }
+
+      //display user data
+      $labels = [
+        'data' => 'Data złożenia',
+        'typ' => 'Typ',
+        'dataRealizacji' => 'Planowana data realizacji',
+        'ulica' => 'Ulica',
+        'numer' => 'Numer domu',
+        'imie' => 'Imię',
+        'nazwisko' => 'Nazwisko',
+        'nazwa' => 'Potrawa',
+        'ilosc' => 'Ilość'
+      ];
+      if(!$is_error){
+        foreach ($result[0] as $key => $val){
+            echo "<table id='{$val['ID']}' class='menu_cat'>";
+            if($key === 0){
+              echo '<caption>Zamówienia</caption>';
+            }
+            echo "<tbody>";
+
+            if(is_null($val['dataRealizacji'])){
+              $val['dataRealizacji'] = 'jak najszybciej';
+            }
+            foreach ($val as $k => $value) {
+              if($k !== 'ID'){
+                echo '<tr>';
+                echo '<td class="labels"><b>'.$labels[$k].':</b> </td>';
+                echo '<td colspan="2">'.$value.'</td>';
+                echo '</tr>';
+              }
+            }
+
+            foreach ($result[1] as $elem) {
+              if($elem['ID'] == $val['ID']){
+                echo '<tr><td class="labels"><b>Pozycje zamówienia:</b> </td>';
+                echo '<td>'.$elem['nazwa'].'</td><td>'.$elem['ilosc'].'</td>';
+                echo '</tr>';
+              }
+            }
+            echo '</tbody>';
+            echo "</table>";
+            echo "<hr />";
+        }
+      }
     }
 
     public function show($db){
