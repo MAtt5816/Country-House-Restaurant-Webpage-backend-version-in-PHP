@@ -92,6 +92,10 @@
             }
             echo '</tbody>';
             echo "</table>";
+            echo '<span><button type="button" name="edit" id="edit" onclick="location.href=\'panel.php?form=Konto&card=data&edit='.$val['ID'].'\'">Edytuj dane</button>';
+            if($key !== 0){
+              echo '<button type="button" name="delete" id="delete" onclick="location.href=\'panel.php?form=Konto&card=data&delete='.$val['ID'].'\'">Usuń dane</button></span>';
+            }
             echo "<hr />";
         }
       }
@@ -139,6 +143,8 @@
             }
             echo '</tbody>';
             echo "</table>";
+            echo '<span><button type="button" name="edit" id="edit" onclick="location.href=\'panel.php?form=Konto&card=addresses&edit='.$val['ID'].'\'">Edytuj adres</button>';
+            echo '<button type="button" name="delete" id="delete" onclick="location.href=\'panel.php?form=Konto&card=addresses&delete='.$val['ID'].'\'">Usuń adres</button></span>';
             echo "<hr />";
         }
       }
@@ -245,6 +251,12 @@
           $card = $_GET['card'];
           if(isset($_REQUEST['cancel'])){
             $this->cancel($db, $_GET['cancel']);
+          }
+          else if(isset($_GET['edit'])){
+
+          }
+          else if(isset($_GET['delete'])){
+
           }
           switch ($card) {
             case 'data':
