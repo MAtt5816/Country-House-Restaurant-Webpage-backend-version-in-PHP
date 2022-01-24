@@ -94,8 +94,9 @@
             echo "</table>";
             echo '<span><button type="button" name="edit" id="edit" onclick="location.href=\'panel.php?form=Konto&card=data&edit='.$val['ID'].'\'">Edytuj dane</button>';
             if($key !== 0){
-              echo '<button type="button" name="delete" id="delete" onclick="location.href=\'panel.php?form=Konto&card=data&delete='.$val['ID'].'\'">Usuń dane</button></span>';
+              echo '<button type="button" name="delete" id="delete" onclick="location.href=\'panel.php?form=Konto&card=data&delete='.$val['ID'].'\'">Usuń dane</button>';
             }
+            echo '</span>';
             echo "<hr />";
         }
       }
