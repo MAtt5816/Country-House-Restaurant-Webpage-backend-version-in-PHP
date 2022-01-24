@@ -218,9 +218,24 @@
             }
             echo '</tbody>';
             echo "</table>";
+            if($val['dataRealizacji'] > date("Y-m-d H:i:s") && $val['dataRealizacji'] !== 'jak najszybciej'){
+              echo '<button type="button" name="cancel" id="cancel" onclick="location.href=\'panel.php?form=Konto&card=orders&cancel='.$val['ID'].'\'">Anuluj zamówienie</button>';
+            }
             echo "<hr />";
         }
       }
+    }
+
+    //CRUD
+    public function cancel($db, $id){
+        $sql = "DELETE FROM `zamowienie` WHERE `zamowienie`.`ID` = {$id} AND `zamowienie`.`user_ID` = {$this->userID}";
+
+        if($db->delete($sql)){
+            echo "Usunięto z bazy";
+        }
+        else{
+            echo "Błąd usunięcia z bazy";
+        }
     }
 
     public function show($db){
@@ -228,6 +243,9 @@
       if($uid > 0){
         if(isset($_GET['card'])){
           $card = $_GET['card'];
+          if(isset($_REQUEST['cancel'])){
+            $this->cancel($db, $_GET['cancel']);
+          }
           switch ($card) {
             case 'data':
               $this->data($db, $uid);
