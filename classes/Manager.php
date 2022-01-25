@@ -245,6 +245,25 @@
         }
     }
 
+    public function delete($db, $id){
+      $sql = "";
+
+      if($_GET['card'] == 'addresses'){
+        $sql = "UPDATE `adres` SET `user_ID`=1,`ulica`='XX',`numer`='XX' WHERE `ID`={$id}";
+      }
+      else if($_GET['card'] == 'data'){
+        $sql = "UPDATE `dane_klienta` SET `user_ID`=1,`imie`='XX',`nazwisko`='XX',`nr_tel`='XX' WHERE `ID`={$id}";
+      }
+
+      if($db->update($sql)){
+        echo 'Usunięto z bazy';
+      }
+      else{
+        echo 'Błąd dostępu do bazy';
+      }
+      header('Refresh: 3; panel.php?form=Konto&card=data');
+    }
+
     public function show($db){
       $uid = $this->userID;
       if($uid > 0){
@@ -257,7 +276,7 @@
 
           }
           else if(isset($_GET['delete'])){
-
+            $this->delete($db, $_GET['delete']);
           }
           switch ($card) {
             case 'data':
