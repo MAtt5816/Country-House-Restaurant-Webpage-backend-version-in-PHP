@@ -32,7 +32,7 @@ $(document).ready(function(){
   });
 
 
-  $('#delivery, #takeway').click(function(){
+  $('#delivery, #takeaway').click(function(){
     if($('#delivery').prop('checked')){
       $('#street, #number').prop('required', true);
       $('#address').show();
