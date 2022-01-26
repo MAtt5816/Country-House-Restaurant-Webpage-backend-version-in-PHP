@@ -125,7 +125,7 @@
       //display user address
       $labels = [
         'ulica' => 'Ulica',
-        'numer' => 'Nazwisko'
+        'numer' => 'Numer'
       ];
       if(!$is_error){
         foreach ($result as $key => $val){
