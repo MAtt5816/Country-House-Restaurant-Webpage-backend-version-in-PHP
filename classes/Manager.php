@@ -249,10 +249,10 @@
       $sql = "";
 
       if($_GET['card'] == 'addresses'){
-        $sql = "UPDATE `adres` SET `user_ID`=1,`ulica`='XX',`numer`='XX' WHERE `ID`={$id}";
+        $sql = "UPDATE `adres` SET `user_ID`=1,`ulica`='XX',`numer`='XX' WHERE `ID`={$id} AND `user_ID` = {$this->userID}";
       }
       else if($_GET['card'] == 'data'){
-        $sql = "UPDATE `dane_klienta` SET `user_ID`=1,`imie`='XX',`nazwisko`='XX',`nr_tel`='XX' WHERE `ID`={$id}";
+        $sql = "UPDATE `dane_klienta` SET `user_ID`=1,`imie`='XX',`nazwisko`='XX',`nr_tel`='XX' WHERE `ID`={$id} AND `user_ID` = {$this->userID}";
       }
 
       if($db->update($sql)){
