@@ -10,7 +10,7 @@
         'name' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^([A-Za-z][ ]?)+$/']],
         'surname' => ['filter' => FILTER_VALIDATE_REGEXP,
-          'options' => ['regexp' => '/^([A-Za-z][ ]?)+$/']],
+          'options' => ['regexp' => '/^([A-Za-z][ -]?)+$/']],
         'phone' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^\d{9}$|^$|^\0$/']],
         'time' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,

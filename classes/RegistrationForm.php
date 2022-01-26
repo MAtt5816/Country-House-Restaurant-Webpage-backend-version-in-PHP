@@ -7,7 +7,7 @@
       'name' => ['filter' => FILTER_VALIDATE_REGEXP,
         'options' => ['regexp' => '/^([A-Za-z][ ]?)+$/']],
       'surname' => ['filter' => FILTER_VALIDATE_REGEXP,
-        'options' => ['regexp' => '/^([A-Za-z][ ]?)+$/']],
+        'options' => ['regexp' => '/^([A-Za-z][ -]?)+$/']],
       'phone' => ['filter' => FILTER_VALIDATE_REGEXP,
         'options' => ['regexp' => '/^\d{9}$|^$|^\0$/']],
       'street' => FILTER_SANITIZE_ADD_SLASHES,
