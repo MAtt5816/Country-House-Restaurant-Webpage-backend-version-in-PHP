@@ -1,5 +1,6 @@
 <?php
   include_once 'UserLogged.php';
+  include_once 'Form.php';
   /**
    *
    */
@@ -264,6 +265,82 @@
       header('Refresh: 3; panel.php?form=Konto&card=data');
     }
 
+    public function edit_form($id){
+      echo '<form action="panel.php?form=Konto&card='.$_GET['card'].'&edited=ok&edit='.$id.'" method="post">
+        <fieldset class="visibility">
+        <h3>Formularz edycji danych</h3>';
+
+      if($_GET['card'] == 'addresses'){
+        ?>
+        <input type="text" name="street" placeholder="ulica" minlength="2" title="Podaj co najmniej dwa znaki." required><br />
+        <input type="text" name="number" placeholder="nr budynku" pattern="^[A-Za-z0-9\/\. ]{,6}$" required><br />
+        <?php
+      }
+      else if($_GET['card'] == 'data'){
+        ?>
+        <input type="text" name="name" placeholder="imię" pattern="^([A-Za-z][ ]?)+$" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required><br />
+        <input type="text" name="surname" placeholder="nazwisko" pattern="^([A-Za-z][ -]?)+$" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required><br />
+        <input type="text" name="phone" placeholder="nr telefonu" pattern="^\d{9}$" title="Podaj dziewięć cyfr bez spacji i innych znaków." required><br />
+        <?php
+      }
+      ?>
+      <input type="submit" name="submit" value="Zapisz zmiany">
+      <input type="reset" name="reset" value="Wyczyść">
+      <input type="submit" name="revoke" value="Anuluj edycję" formnovalidate>
+      <?php
+      echo "</fieldset></form>";
+    }
+
+    public function edit($db, $id){
+      $sql = "";
+      $filter = array();
+
+      if($_GET['card'] == 'addresses'){
+        $filter = [
+          'street' => FILTER_SANITIZE_ADD_SLASHES,
+          'number' => ['filter' => FILTER_VALIDATE_REGEXP,
+            'options' => ['regexp' => '/^[A-Za-z0-9\/\. ]{0,6}|^$|^\0$/']]
+        ];
+      }
+      else if($_GET['card'] == 'data'){
+        $filter = [
+          'name' => ['filter' => FILTER_VALIDATE_REGEXP,
+          'options' => ['regexp' => '/^([A-Za-z][ ]?)+$/']],
+          'surname' => ['filter' => FILTER_VALIDATE_REGEXP,
+            'options' => ['regexp' => '/^([A-Za-z][ -]?)+$/']],
+          'phone' => ['filter' => FILTER_VALIDATE_REGEXP,
+            'options' => ['regexp' => '/^\d{9}$|^$|^\0$/']]
+        ];
+      }
+
+      $data = Form::validation($filter);
+      if($data != ""){
+        $string = "";
+        foreach ($data as $val){
+            $string .=$val.', ';
+        }
+
+        $string = substr_replace($string, "", -2, 2);
+
+        if($_GET['card'] == 'addresses'){
+          list($street, $number) = explode(", ", $string);
+          $sql = "UPDATE `adres` SET `ulica`='{$street}',`numer`='{$number}' WHERE `ID`={$id} AND `user_ID` = {$this->userID}";
+        }
+        else if($_GET['card'] == 'data'){
+          list($name, $surname, $tel) = explode(", ", $string);
+          $sql = "UPDATE `dane_klienta` SET `imie`='{$name}',`nazwisko`='{$surname}',`nr_tel`='{$tel}' WHERE `ID`={$id} AND `user_ID` = {$this->userID}";
+        }
+
+        if($db->update($sql)){
+          echo "Zaktualizowano dane";
+        }
+        else{
+          echo "Błąd aktualizacji danych";
+        }
+        header("Refresh: 3; panel.php?form=Konto&card={$_GET['card']}");
+      }
+    }
+
     public function show($db){
       $uid = $this->userID;
       if($uid > 0){
@@ -273,7 +350,23 @@
             $this->cancel($db, $_GET['cancel']);
           }
           else if(isset($_GET['edit'])){
-
+            if(!isset($_GET['edited'])){
+              $this->edit_form($_GET['edit']);
+            }
+            else if($_GET['edited'] == 'ok'){
+              if(filter_input(INPUT_POST, "submit")){
+                $action = filter_input(INPUT_POST, "submit");
+                switch ($action){
+                    case "Zapisz zmiany": {
+                        $this->edit($db, $_GET['edit']);
+                        break;
+                    }
+                    case 'Anuluj edycję':
+                        header("Refresh: 0; panel.php?form=Konto&card={$_GET['card']}");
+                        break;
+                }
+              }
+            }
           }
           else if(isset($_GET['delete'])){
             $this->delete($db, $_GET['delete']);
