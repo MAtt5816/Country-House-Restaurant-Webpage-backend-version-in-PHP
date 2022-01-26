@@ -82,8 +82,8 @@ $(document).ready(function(){
     details.number = $("#number").val();
     details.payment = $("#payment option:selected").val();
     details.comments = $("textarea").val();
-    if($("#takeway").prop("checked")){
-      details.method = "takeway";
+    if($("#takeaway").prop("checked")){
+      details.method = "takeaway";
     }
     else{
       details.method = "delivery";
@@ -116,8 +116,8 @@ $(document).ready(function(){
       $("#street").val(item.street);
       $("#number").val(item.number);
       $("textarea").val(item.comments);
-      if(item.method == "takeway"){
-        $("#takeway").click();
+      if(item.method == "takeaway"){
+        $("#takeaway").click();
       }
       else{
         $("#delivery").click();
