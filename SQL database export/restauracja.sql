@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 15 Sty 2022, 20:06
+-- Czas generowania: 26 Sty 2022, 20:26
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.11
 
@@ -40,7 +40,14 @@ CREATE TABLE `adres` (
 --
 
 INSERT INTO `adres` (`ID`, `user_ID`, `ulica`, `numer`) VALUES
-(1, 1, 'Stara', '12/3');
+(1, 1, 'Nowa', '12/1a'),
+(3, 3, 'Nowa', '1a'),
+(4, 5, 'Stara', '1/12'),
+(5, 6, 'Fajna', '13'),
+(6, 7, 'Tut', '2'),
+(7, 8, 'Werty', '1a/103'),
+(8, 9, 'Loki', '10/2'),
+(10, 9, 'Nowa', '11c');
 
 -- --------------------------------------------------------
 
@@ -61,7 +68,14 @@ CREATE TABLE `dane_klienta` (
 --
 
 INSERT INTO `dane_klienta` (`ID`, `user_ID`, `imie`, `nazwisko`, `nr_tel`) VALUES
-(1, 1, 'Alina', 'Nowak', '444333222');
+(1, 1, 'Alina', 'Nowak', '444333222'),
+(3, 3, 'Jan', 'Kowalski', '555444333'),
+(4, 5, 'Anna', 'Nowak', '444555666'),
+(5, 6, 'Ada', 'Lada', '111222369'),
+(6, 7, 'Kasia', 'Bak', '444999000'),
+(7, 8, 'Kamil', 'Stanowski', '111000999'),
+(8, 9, 'Mat', 'Lex', '339888777'),
+(9, 1, 'Janina', 'Nowak-Janik', '444999222');
 
 -- --------------------------------------------------------
 
@@ -82,8 +96,6 @@ CREATE TABLE `lista_pozycji` (
 INSERT INTO `lista_pozycji` (`zamowienie_ID`, `menu_ID`, `ilosc`) VALUES
 (66, 1, 2),
 (66, 5, 3),
-(67, 1, 2),
-(67, 5, 3),
 (68, 1, 2),
 (68, 5, 3);
 
@@ -159,7 +171,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `login`, `password`) VALUES
-(1, 'ama', '65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5');
+(1, 'ama', '65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5'),
+(3, 'jankowalski', 'b0b448826f1be73e57628aababa7c4a9ef0609ef4eec150a28e716813022cfeb'),
+(5, 'annanowak', '7091bfb2bac8a2b9995c510177b3bf8a638e58bd6de0bda9535b62269134a362'),
+(6, 'adalada', '7dc41009205afa21baaad63f74ba67e9bddfd780c5510ef1b47e6fa98007135d'),
+(7, 'kasiabak', 'fcc99c4b667a6bd873176d77599611718961592804aa2a63c08cca81abe194da'),
+(8, 'kamilstan', 'c75d17da3db16bf0530e46c64af1f9cca53bd4fc98e016082afc8565f6eb8064'),
+(9, 'matlex', 'db2d5c8379a30a98a13d91890c97e33806733580480dbd8bf600a3a4650ee10c');
 
 -- --------------------------------------------------------
 
@@ -187,7 +205,6 @@ CREATE TABLE `zamowienie` (
 INSERT INTO `zamowienie` (`ID`, `user_ID`, `data`, `typ`, `daneKlienta_ID`, `czasRealizacji_typ`, `dataRealizacji`, `adres_ID`, `uwagi`, `platnosc`) VALUES
 (65, 1, '2022-01-07 10:21:18', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash'),
 (66, 1, '2022-01-07 10:26:30', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash'),
-(67, 1, '2022-01-07 10:29:54', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash'),
 (68, 1, '2022-01-07 10:30:48', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash');
 
 --
@@ -244,13 +261,13 @@ ALTER TABLE `zamowienie`
 -- AUTO_INCREMENT dla tabeli `adres`
 --
 ALTER TABLE `adres`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT dla tabeli `dane_klienta`
 --
 ALTER TABLE `dane_klienta`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT dla tabeli `menu`
@@ -262,13 +279,13 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT dla tabeli `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT dla tabeli `zamowienie`
 --
 ALTER TABLE `zamowienie`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Ograniczenia dla zrzutów tabel
