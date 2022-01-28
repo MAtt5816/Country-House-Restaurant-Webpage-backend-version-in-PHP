@@ -73,7 +73,7 @@
               $user_data = OrderForm::choose_data($db, $uid->userID);
               if($user_data !== false){
               //end of <<if's>> below
-              echo '<select id="user_data">';
+              echo '<select name="user_data" id="user_data">';
               foreach ($user_data[0] as $value) {
                 echo $value;
               }
@@ -99,7 +99,7 @@
           <?php
             if(isset($user_data)){
               if($user_data !== false){
-                echo '<select id="user_address">';
+                echo '<select name="user_address" id="user_address">';
                 foreach ($user_data[1] as $value) {
                   echo $value;
                 }
