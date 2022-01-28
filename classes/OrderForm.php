@@ -21,7 +21,7 @@
         'street' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^[A-Za-z0-9]{1}[0-9A-Za-z\/ \.\,\'-]{0,99}$|^$|^\0$/']],
         'number' => ['filter' => FILTER_VALIDATE_REGEXP,
-          'options' => ['regexp' => '/^[A-Za-z0-9\/\. ]{,6}|^$|^\0$/']],
+          'options' => ['regexp' => '/^[A-Za-z0-9\/\. ]{0,6}|^$|^\0$/']],
         'payment' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         'comments' => FILTER_SANITIZE_FULL_SPECIAL_CHARS
       ];
@@ -120,6 +120,10 @@
               echo "Dodano do bazy";
           }
       }
+    }
+
+    public function updateInDB($db){
+
     }
 
     public function choose_data($db, $uid){

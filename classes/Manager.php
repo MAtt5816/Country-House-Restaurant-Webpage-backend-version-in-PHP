@@ -273,7 +273,7 @@
       if($_GET['card'] == 'addresses'){
         ?>
         <input type="text" name="street" placeholder="ulica" minlength="2" title="Podaj co najmniej dwa znaki." required><br />
-        <input type="text" name="number" placeholder="nr budynku" pattern="^[A-Za-z0-9\/\. ]{,6}$" required><br />
+        <input type="text" name="number" placeholder="nr budynku" pattern="^[A-Za-z0-9\/\. ]{0,6}$" required><br />
         <?php
       }
       else if($_GET['card'] == 'data'){
