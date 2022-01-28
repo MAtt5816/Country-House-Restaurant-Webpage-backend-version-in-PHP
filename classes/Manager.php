@@ -246,7 +246,7 @@
         }
     }
 
-    public function delete($db, $id){
+    public function delete($db, $id){    //user with ID=1 is a `trash user`
       $sql = "";
 
       if($_GET['card'] == 'addresses'){
