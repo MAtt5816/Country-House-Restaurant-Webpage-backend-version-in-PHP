@@ -54,6 +54,32 @@ $(document).ready(function(){
     }
   });
 
+  $('#user_data').change(function(){
+    var [name, surname, phone] = $('#user_data').val().split('#');
+    if($(this).val() == 'add'){
+      $('#name, #surname, #phone').prop('readOnly', false);
+      $('#name, #surname, #phone').val('');
+    }
+    else {
+      $('#name, #surname, #phone').attr('readonly', true);
+      $('#name').val(name);
+      $('#surname').val(surname);
+      $('#phone').val(phone);
+    }
+  });
+
+  $('#user_address').change(function(){
+    var [street, number] = $('#user_address').val().split('#');
+    if($(this).val() == 'add'){
+      $('#street, #number').prop('readonly', false);
+      $('#street, #number').val('');
+    }
+    else {
+      $('#street, #number').attr('readonly', true);
+      $('#street').val(street);
+      $('#number').val(number);
+    }
+  });
 
   $('form').submit(function(){
     var dishes = [];
