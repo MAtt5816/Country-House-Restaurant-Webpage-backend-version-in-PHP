@@ -141,10 +141,10 @@
         $string = array();
         if($result !== ""){
           foreach ($result[0] as $key => $value) {
-            $string[0][$key] = '<option value="'.$value['imie'].'#'.$value['nazwisko'].'#'.$value['nr_tel'].'">'.$value['imie'].' '.$value['nazwisko'].'; tel.: '.$value['nr_tel'].'</option>';
+            $string[0][$key] = '<option value="'.$value['ID'].'#'.$value['imie'].'#'.$value['nazwisko'].'#'.$value['nr_tel'].'">'.$value['imie'].' '.$value['nazwisko'].'; tel.: '.$value['nr_tel'].'</option>';
           }
           foreach ($result[1] as $key => $value) {
-            $string[1][$key] = '<option value="'.$value['ulica'].'#'.$value['numer'].'">'.$value['ulica'].' '.$value['numer'].'</option>';
+            $string[1][$key] = '<option value="'.$value['ID'].'#'.$value['ulica'].'#'.$value['numer'].'">'.$value['ulica'].' '.$value['numer'].'</option>';
           }
           return $string;
         }

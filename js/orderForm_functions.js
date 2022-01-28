@@ -55,7 +55,7 @@ $(document).ready(function(){
   });
 
   $('#user_data').change(function(){
-    var [name, surname, phone] = $('#user_data').val().split('#');
+    var [user_id, name, surname, phone] = $('#user_data').val().split('#');
     if($(this).val() == 'add'){
       $('#name, #surname, #phone').prop('readOnly', false);
       $('#name, #surname, #phone').val('');
@@ -69,7 +69,7 @@ $(document).ready(function(){
   });
 
   $('#user_address').change(function(){
-    var [street, number] = $('#user_address').val().split('#');
+    var [address_id, street, number] = $('#user_address').val().split('#');
     if($(this).val() == 'add'){
       $('#street, #number').prop('readonly', false);
       $('#street, #number').val('');
