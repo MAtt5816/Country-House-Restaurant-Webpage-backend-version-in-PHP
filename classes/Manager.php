@@ -85,6 +85,7 @@
             echo "<tbody>";
             foreach ($val as $k => $value) {
               if($k !== 'ID'){
+                $value = htmlspecialchars($value);
                 echo '<tr>';
                 echo '<td class="labels"><b>'.$labels[$k].':</b> </td>';
                 echo '<td>'.$value.'</td>';
@@ -137,6 +138,7 @@
             echo "<tbody>";
             foreach ($val as $k => $value) {
               if($k !== 'ID'){
+                $value = htmlspecialchars($value);
                 echo '<tr>';
                 echo '<td class="labels"><b>'.$labels[$k].':</b> </td>';
                 echo '<td>'.$value.'</td>';
@@ -210,6 +212,7 @@
             }
             foreach ($val as $k => $value) {
               if($k !== 'ID'){
+                $value = htmlspecialchars($value);
                 echo '<tr>';
                 echo '<td class="labels"><b>'.$labels[$k].':</b> </td>';
                 echo '<td colspan="2">'.$value.'</td>';
@@ -219,6 +222,7 @@
 
             foreach ($result[1] as $elem) {
               if($elem['ID'] == $val['ID']){
+                $value = htmlspecialchars($value);
                 echo '<tr><td class="labels"><b>Pozycje zamówienia:</b> </td>';
                 echo '<td>'.$elem['nazwa'].'</td><td>'.$elem['ilosc'].'</td>';
                 echo '</tr>';
