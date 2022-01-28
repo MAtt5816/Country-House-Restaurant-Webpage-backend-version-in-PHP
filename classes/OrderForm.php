@@ -81,12 +81,18 @@
 
           $string = substr_replace($string, "", -2, 2);
 
+          if(isset($_SESSION['userID'])){
+            $uid = unserialize($_SESSION['userID'])->userID;
+          }
+          $udata = strtok($_POST['user_data'], '#');
+          $uaddress = strtok($_POST['user_address'], '#');
+
           list($type, $order, $name, $surname, $tel, $realisation, $street, $number, $payment, $comment, $realisation_date) = explode(", ", $string);
           $sql = [
               "INSERT INTO `zamowienie`(`ID`, `user_ID`, `typ`, `daneKlienta_ID`, `czasRealizacji_typ`, `dataRealizacji`, `adres_ID`, `uwagi`, `platnosc`)
-                  VALUES (NULL, 1, $type, 1, $realisation, STR_TO_DATE($realisation_date, \"%Y-%m-%d %H:%i\"), 1, $comment, $payment);",        //TODO  // replace static ID
+                  VALUES (NULL, {$uid}, $type, {$udata}, $realisation, STR_TO_DATE($realisation_date, \"%Y-%m-%d %H:%i\"), {$uaddress}, $comment, $payment);",
               "INSERT INTO `lista_pozycji`(`zamowienie_ID`, `menu_ID`, `ilosc`)
-                  VALUES (last_id, 1, 2), (last_id, 5, 3);"
+                  VALUES (last_id, 1, 2), (last_id, 5, 3);"   //TODO  // replace static ID
           ];
 
           $last_id = 0;
