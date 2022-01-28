@@ -131,6 +131,10 @@
                 $form->insertToDB($db);
                 break;
             }
+            case "Nadpisz zamówienie": {
+                $form->updateInDB($db);
+                break;
+            }
         }
       }
     ?>

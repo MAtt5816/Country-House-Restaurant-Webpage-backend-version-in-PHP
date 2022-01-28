@@ -168,7 +168,29 @@
     }
 
     public function updateInDB($db){
+      if(isset($_SESSION['userID'])){    //user with ID=2 is a `guest user`
+        $uid = unserialize($_SESSION['userID'])->userID;
+      }
+      else {
+        $uid = 2;
+      }
 
+      $sql = "SELECT `ID` FROM `zamowienie` WHERE `user_ID`={$uid} ORDER BY `ID` DESC LIMIT 1";
+      try{
+        $result = $db->getMysqli()->query($sql)->fetch_object()->ID;
+      }
+      catch(Exception | mysqli_sql_exception $exception){
+          echo "Błąd aktualizacji";
+          return false;
+      }
+
+      $sql = "DELETE FROM `zamowienie` WHERE `zamowienie`.`ID` = {$result} AND `zamowienie`.`user_ID` = {$uid}";
+      if($db->delete($sql)){
+          $this->insertToDB($db);
+      }
+      else{
+          echo "Błąd aktualizacji bazy";
+      }
     }
 
     public function choose_data($db, $uid){
