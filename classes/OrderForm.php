@@ -5,15 +5,15 @@
   {
     private $category;
     protected $filter_array = [
-        'order_type' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-        'position' => ['filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS, 'flags' => FILTER_REQUIRE_ARRAY],
-        'name' => ['filter' => FILTER_VALIDATE_REGEXP,
+        'order_type' => FILTER_SANITIZE_ADD_SLASHES,
+        'position' => ['filter' => FILTER_SANITIZE_ADD_SLASHES, 'flags' => FILTER_REQUIRE_ARRAY],
+        'name' => ['filter' => FILTER_SANITIZE_ADD_SLASHES,
           'options' => ['regexp' => '/^([A-Za-z][ ]?)+$/']],
         'surname' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^([A-Za-z][ -]?)+$/']],
         'phone' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^\d{9}$|^$|^\0$/']],
-        'time' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        'time' => FILTER_SANITIZE_ADD_SLASHES,
         'hour' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^\d{2}\:\d{2}$|^$|^\0$/']],
         'day' => ['filter' => FILTER_VALIDATE_REGEXP,
@@ -22,8 +22,8 @@
           'options' => ['regexp' => '/^[A-Za-z0-9]{1}[0-9A-Za-z\/ \.\,\'-]{0,99}$|^$|^\0$/']],
         'number' => ['filter' => FILTER_VALIDATE_REGEXP,
           'options' => ['regexp' => '/^[A-Za-z0-9\/\. ]{0,6}|^$|^\0$/']],
-        'payment' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-        'comments' => FILTER_SANITIZE_FULL_SPECIAL_CHARS
+        'payment' => FILTER_SANITIZE_ADD_SLASHES,
+        'comments' => FILTER_SANITIZE_ADD_SLASHES
       ];
 
     function __construct($category)
