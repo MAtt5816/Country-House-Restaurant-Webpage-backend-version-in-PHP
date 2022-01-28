@@ -17,7 +17,6 @@
 
       $errors = "";
       foreach ($data as $key => $val) {
-        //  if ($val === false or $val === NULL) { //tmp
             if ($val === false){
               $errors .= $key . " ";
           }

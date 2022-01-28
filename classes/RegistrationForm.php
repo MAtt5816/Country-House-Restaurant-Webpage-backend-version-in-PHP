@@ -68,7 +68,7 @@
               "INSERT INTO `user`(`ID`, `login`, `password`)
                   VALUES (NULL, $login, $password);",
               "INSERT INTO `dane_klienta`(`ID`, `user_ID`, `imie`, `nazwisko`, `nr_tel`)
-                  VALUES (NULL, last_id, $name, $surname, $tel);" ,          //TODO remove static userID
+                  VALUES (NULL, last_id, $name, $surname, $tel);" ,       
               "INSERT INTO `adres`(`ID`, `user_ID`, `ulica`, `numer`)
                   VALUES (NULL, last_id, $street, $number);"
           ];
