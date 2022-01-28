@@ -81,17 +81,31 @@
 
           $string = substr_replace($string, "", -2, 2);
 
-          if(isset($_SESSION['userID'])){
+          list($type, $order, $name, $surname, $tel, $realisation, $street, $number, $payment, $comment, $realisation_date) = explode(", ", $string);
+
+          if(isset($_SESSION['userID'])){    //user with ID=2 is a `guest user`
             $uid = unserialize($_SESSION['userID'])->userID;
+          }
+          else {
+            $uid = 2;
           }
           if($_POST['user_data'] != 'add'){
             $udata = strtok($_POST['user_data'], '#');
           }
+          else {
+            $sql = "INSERT INTO `dane_klienta`(`user_ID`, `imie`, `nazwisko`, `nr_tel`) VALUES ({$uid},{$name},{$surname},{$tel})";
+            $db->insert($sql);
+            $udata = $db->last_id();
+          }
           if($_POST['user_address'] != 'add'){
             $uaddress = strtok($_POST['user_address'], '#');
           }
+          else {
+            $sql = "INSERT INTO `adres`(`user_ID`, `ulica`, `numer`) VALUES ({$uid}, {$street}, {$number})";
+            $db->insert($sql);
+            $uaddress = $db->last_id();
+          }
 
-          list($type, $order, $name, $surname, $tel, $realisation, $street, $number, $payment, $comment, $realisation_date) = explode(", ", $string);
           $sql = [
               "INSERT INTO `zamowienie`(`ID`, `user_ID`, `typ`, `daneKlienta_ID`, `czasRealizacji_typ`, `dataRealizacji`, `adres_ID`, `uwagi`, `platnosc`)
                   VALUES (NULL, {$uid}, $type, {$udata}, $realisation, STR_TO_DATE($realisation_date, \"%Y-%m-%d %H:%i\"), {$uaddress}, $comment, $payment);",
