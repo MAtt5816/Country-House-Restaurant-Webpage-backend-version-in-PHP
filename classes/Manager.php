@@ -6,7 +6,7 @@
    */
   class Manager extends UserLogged
   {
-    protected $userID = 0;
+    public $userID = 0;
 
     function __construct(){}
 

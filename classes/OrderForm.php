@@ -122,6 +122,32 @@
       }
     }
 
+    public function choose_data($db, $uid){
+      if($uid > 0){
+        $sql = [
+          "SELECT `dane_klienta`.`ID`, `dane_klienta`.`imie`, `dane_klienta`.`nazwisko`, `dane_klienta`.`nr_tel`
+          FROM `dane_klienta` WHERE `dane_klienta`.`user_ID`={$uid}",
+          "SELECT `adres`.`ID`, `adres`.`ulica`, `adres`.`numer`
+          FROM `adres` WHERE `adres`.`user_ID`={$uid}"
+        ];
+        $fields = [['ID', 'imie','nazwisko','nr_tel'],['ID','ulica','numer']];
+        $result[0] = $db->select($sql[0], $fields[0]);
+        $result[1] = $db->select($sql[1], $fields[1]);
+
+        $string = array();
+        if($result !== ""){
+          foreach ($result[0] as $key => $value) {
+            $string[0][$key] = '<option value="'.$value['ID'].'">'.$value['imie'].' '.$value['nazwisko'].'; tel.: '.$value['nr_tel'].'</option>';
+          }
+          foreach ($result[1] as $key => $value) {
+            $string[1][$key] = '<option value="'.$value['ID'].'">'.$value['ulica'].' '.$value['numer'].'</option>';
+          }
+          return $string;
+        }
+        else return false;
+      }
+    }
+
     public function __destruct()
     {
       Form::__destruct();

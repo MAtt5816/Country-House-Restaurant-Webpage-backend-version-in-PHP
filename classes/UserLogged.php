@@ -4,7 +4,7 @@
    */
   class UserLogged
   {
-    protected $userID;
+    public $userID;
     protected $sessionID;
     function __construct($userID)
     {

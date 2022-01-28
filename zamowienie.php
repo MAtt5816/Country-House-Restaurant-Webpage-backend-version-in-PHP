@@ -51,6 +51,7 @@
           <?php
             include_once 'classes/Database.php';
             include_once 'classes/OrderForm.php';
+            include_once 'classes/UserLogged.php';
 
             $db = new Database('localhost', 'root', '', 'restauracja');
 
@@ -59,15 +60,33 @@
               $form_{$value} = new OrderForm($value);
               $form_{$value}->print($db);
             }
+
           ?>
         </fieldset>
       </fieldset>
       <fieldset class="visibility" id="details">
         <fieldset>
           <legend>Dane osoby zamawiającej</legend>
+          <?php
+            if($is_session){
+              $uid = unserialize($_SESSION['userID']);
+              $user_data = OrderForm::choose_data($db, $uid->userID);
+              if($user_data !== false){
+              //end of <<if's>> below
+              echo '<select name="user_data" id="user_data">';
+              foreach ($user_data[0] as $value) {
+                echo $value;
+              }
+              echo '</select>';
+            }}
+            else {
+          ?>
           <label for="name">Imię: </label><input type="text" name="name" id="name" pattern="^([A-Za-z][ ]?)+$" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required>
           <label for="surname">Nazwisko: </label><input type="text" name="surname" id="surname" pattern="^([A-Za-z][ -]?)+$" title="Podaj co najmniej dwie litery. Nie uzywaj cyfr." required>
           <label for="phone">Nr telefonu: </label><input type="tel" name="phone" id="phone" pattern="^\d{9}$" title="Podaj dziewięć cyfr bez spacji i innych znaków." required>
+          <?php
+            }
+          ?>
         </fieldset>
         <fieldset>
           <legend>Czas realizacji</legend>
@@ -80,8 +99,24 @@
         </fieldset>
         <fieldset id="address">
           <legend>Adres dostawy</legend>
+          <?php
+            if(isset($user_data)){
+              if($user_data !== false){
+                echo '<select name="user_address" id="user_address">';
+                foreach ($user_data[1] as $value) {
+                  echo $value;
+                }
+                echo '</select>';
+              }
+            }
+            else {
+          ?>
           <label for="street">Ulica: </label><input type="text" name="street" id="street" minlength="2" title="Podaj co najmniej dwa znaki.">
-          <label for="number">Numer: </label><input type="text" name="number" id="number"><br><br>
+          <label for="number">Numer: </label><input type="text" name="number" id="number">
+          <?php
+            }
+          ?>
+          <br><br>
           <label for="payment">Sposób płatności  kurierowi: </label><select id="payment" name="payment">
             <option value="cash">Gotowka</option>
             <option value="card">Karta</option>
