@@ -84,8 +84,12 @@
           if(isset($_SESSION['userID'])){
             $uid = unserialize($_SESSION['userID'])->userID;
           }
-          $udata = strtok($_POST['user_data'], '#');
-          $uaddress = strtok($_POST['user_address'], '#');
+          if($_POST['user_data'] != 'add'){
+            $udata = strtok($_POST['user_data'], '#');
+          }
+          if($_POST['user_address'] != 'add'){
+            $uaddress = strtok($_POST['user_address'], '#');
+          }
 
           list($type, $order, $name, $surname, $tel, $realisation, $street, $number, $payment, $comment, $realisation_date) = explode(", ", $string);
           $sql = [
