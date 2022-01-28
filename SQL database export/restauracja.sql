@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 26 Sty 2022, 20:26
+-- Czas generowania: 28 Sty 2022, 16:35
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.11
 
@@ -47,7 +47,13 @@ INSERT INTO `adres` (`ID`, `user_ID`, `ulica`, `numer`) VALUES
 (6, 7, 'Tut', '2'),
 (7, 8, 'Werty', '1a/103'),
 (8, 9, 'Loki', '10/2'),
-(10, 9, 'Nowa', '11c');
+(10, 9, 'Nowa', '11c'),
+(11, 1, 'Czarnowa', '12b'),
+(12, 2, '', ''),
+(13, 2, 'Nowatorska', '20'),
+(14, 2, 'Nasza', '3'),
+(15, 2, 'Nasza', '3'),
+(16, 3, 'Nowa', '1a');
 
 -- --------------------------------------------------------
 
@@ -75,7 +81,13 @@ INSERT INTO `dane_klienta` (`ID`, `user_ID`, `imie`, `nazwisko`, `nr_tel`) VALUE
 (6, 7, 'Kasia', 'Bak', '444999000'),
 (7, 8, 'Kamil', 'Stanowski', '111000999'),
 (8, 9, 'Mat', 'Lex', '339888777'),
-(9, 1, 'Janina', 'Nowak-Janik', '444999222');
+(9, 1, 'Janina', 'Nowak-Janik', '444999222'),
+(10, 1, 'Monika', 'Derek', '888777222'),
+(11, 2, 'Andrzej ', 'Kos', '111000222'),
+(12, 2, 'Anita', 'Jak', '111222000'),
+(13, 2, 'Olo', 'Jolo', '111000222'),
+(14, 2, 'Olo', 'Jolo', '111000222'),
+(15, 3, 'Jan', 'Kowalski', '555444333');
 
 -- --------------------------------------------------------
 
@@ -97,7 +109,39 @@ INSERT INTO `lista_pozycji` (`zamowienie_ID`, `menu_ID`, `ilosc`) VALUES
 (66, 1, 2),
 (66, 5, 3),
 (68, 1, 2),
-(68, 5, 3);
+(68, 5, 3),
+(71, 1, 2),
+(71, 5, 3),
+(73, 1, 2),
+(73, 5, 3),
+(74, 1, 2),
+(74, 5, 3),
+(75, 1, 2),
+(75, 5, 3),
+(76, 1, 2),
+(76, 5, 3),
+(77, 1, 2),
+(77, 5, 3),
+(78, 1, 2),
+(78, 5, 3),
+(79, 1, 2),
+(79, 5, 3),
+(109, 7, 1),
+(109, 9, 1),
+(109, 14, 5),
+(110, 1, 1),
+(110, 4, 1),
+(110, 23, 2),
+(110, 26, 1),
+(112, 13, 3),
+(114, 7, 1),
+(114, 14, 1),
+(116, 1, 1),
+(116, 15, 1),
+(116, 17, 1),
+(116, 24, 1),
+(117, 5, 2),
+(117, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -172,6 +216,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`ID`, `login`, `password`) VALUES
 (1, 'ama', '65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5'),
+(2, 'trelo', '65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5'),
 (3, 'jankowalski', 'b0b448826f1be73e57628aababa7c4a9ef0609ef4eec150a28e716813022cfeb'),
 (5, 'annanowak', '7091bfb2bac8a2b9995c510177b3bf8a638e58bd6de0bda9535b62269134a362'),
 (6, 'adalada', '7dc41009205afa21baaad63f74ba67e9bddfd780c5510ef1b47e6fa98007135d'),
@@ -205,7 +250,21 @@ CREATE TABLE `zamowienie` (
 INSERT INTO `zamowienie` (`ID`, `user_ID`, `data`, `typ`, `daneKlienta_ID`, `czasRealizacji_typ`, `dataRealizacji`, `adres_ID`, `uwagi`, `platnosc`) VALUES
 (65, 1, '2022-01-07 10:21:18', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash'),
 (66, 1, '2022-01-07 10:26:30', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash'),
-(68, 1, '2022-01-07 10:30:48', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash');
+(68, 1, '2022-01-07 10:30:48', 'delivery', 1, 'date', '2022-01-20 15:54:00', 1, 'XASslkajld', 'cash'),
+(71, 1, '2022-01-28 10:36:43', 'delivery', 1, 'date', '2022-02-05 13:33:00', 1, 'assuy', 'cash'),
+(73, 1, '2022-01-28 10:53:52', 'takeaway', 1, 'ASAP', NULL, 1, '', 'cash'),
+(74, 1, '2022-01-28 10:54:21', 'delivery', 1, 'ASAP', NULL, 1, '', 'cash'),
+(75, 1, '2022-01-28 11:00:01', 'delivery', 1, 'ASAP', NULL, 1, '', 'cash'),
+(76, 1, '2022-01-28 11:07:17', 'delivery', 9, 'ASAP', NULL, 1, '', 'cash'),
+(77, 1, '2022-01-28 12:02:40', 'delivery', 9, 'ASAP', NULL, 1, '', 'cash'),
+(78, 1, '2022-01-28 12:17:01', 'delivery', 10, 'date', '2022-01-26 18:16:00', 1, '', 'card'),
+(79, 1, '2022-01-28 12:17:38', 'delivery', 1, 'ASAP', NULL, 11, '', 'cash'),
+(109, 1, '2022-01-28 12:55:38', 'delivery', 1, 'ASAP', NULL, 1, '', 'cash'),
+(110, 2, '2022-01-28 13:04:35', 'takeaway', 11, 'ASAP', NULL, 12, 'Szybko', 'cash'),
+(112, 1, '2022-01-28 13:29:42', 'delivery', 10, 'ASAP', NULL, 11, '', 'cash'),
+(114, 2, '2022-01-28 14:07:33', 'delivery', 14, 'ASAP', NULL, 15, '', 'cash'),
+(116, 3, '2022-01-28 14:09:14', 'delivery', 15, 'ASAP', NULL, 16, '', 'card'),
+(117, 1, '2022-01-28 14:31:28', 'delivery', 10, 'ASAP', NULL, 11, '', 'cash');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -261,13 +320,13 @@ ALTER TABLE `zamowienie`
 -- AUTO_INCREMENT dla tabeli `adres`
 --
 ALTER TABLE `adres`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT dla tabeli `dane_klienta`
 --
 ALTER TABLE `dane_klienta`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT dla tabeli `menu`
@@ -285,7 +344,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT dla tabeli `zamowienie`
 --
 ALTER TABLE `zamowienie`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- Ograniczenia dla zrzutów tabel
