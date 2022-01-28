@@ -73,6 +73,10 @@
             $panel->authorization();
             $panel->show($db);
           }
+          else{
+            echo "<h1>Strona zastrzeżona. Za chwilę nastąpi przekierowanie.</h1>";
+            header("Refresh: 2; panel.php");
+          }
         }
       }
       else{
