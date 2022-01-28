@@ -54,13 +54,6 @@
     function insertToDB($db){
       $data = $this->validation($this->filter_array);
       if($data != ""){
-          $positions = "";
-          foreach ($data['position'] as $val){
-              $positions .= $val.",";
-          }
-          $positions = substr_replace($positions, "", -1);
-          $data['position'] = $positions;
-
           if(isset($data['day']) && isset($data['hour'])){
               $datetime = $data['day']." ".$data['hour'];
               $data += ['datetime' => $datetime];
@@ -75,13 +68,15 @@
           unset($data['hour']);
 
           $string = "";
-          foreach ($data as $val){
-              $string .='"'.$val.'", ';
+          foreach ($data as $k => $val){
+              if($k !== 'position'){
+                $string .='"'.$val.'", ';
+              }
           }
 
           $string = substr_replace($string, "", -2, 2);
 
-          list($type, $order, $name, $surname, $tel, $realisation, $street, $number, $payment, $comment, $realisation_date) = explode(", ", $string);
+          list($type, $name, $surname, $tel, $realisation, $street, $number, $payment, $comment, $realisation_date) = explode(", ", $string);
 
           if(isset($_SESSION['userID'])){    //user with ID=2 is a `guest user`
             $uid = unserialize($_SESSION['userID'])->userID;
@@ -89,28 +84,54 @@
           else {
             $uid = 2;
           }
-          if($_POST['user_data'] != 'add'){
-            $udata = strtok($_POST['user_data'], '#');
+          if(isset($_POST['user_data'])){
+            if($_POST['user_data'] != 'add'){
+              $udata = strtok($_POST['user_data'], '#');
+            }
+            else {
+              goto a;
+            }
           }
           else {
+            a:
             $sql = "INSERT INTO `dane_klienta`(`user_ID`, `imie`, `nazwisko`, `nr_tel`) VALUES ({$uid},{$name},{$surname},{$tel})";
             $db->insert($sql);
             $udata = $db->last_id();
           }
-          if($_POST['user_address'] != 'add'){
-            $uaddress = strtok($_POST['user_address'], '#');
+          if(isset($_POST['user_address'])){
+            if($_POST['user_address'] != 'add'){
+              $uaddress = strtok($_POST['user_address'], '#');
+            }
+            else {
+              goto b;
+            }
           }
           else {
+            b:
             $sql = "INSERT INTO `adres`(`user_ID`, `ulica`, `numer`) VALUES ({$uid}, {$street}, {$number})";
             $db->insert($sql);
             $uaddress = $db->last_id();
           }
 
+          $values = "";
+          foreach ($data['position'] as $value) {
+            $field = ['ID'];
+            $sql = "SELECT `ID` FROM `menu` WHERE `name_tag`='{$value}'";
+            $pos_id = $db->select($sql, $field);
+
+            $quantity = filter_input(INPUT_POST, $value, FILTER_VALIDATE_INT);
+            if(!$quantity || is_null($quantity)){
+              break;
+            }
+            $values .= "(last_id,{$pos_id[0]['ID']}, {$quantity}),";
+          }
+          $values = substr_replace($values, "", -1, 1);
+
           $sql = [
               "INSERT INTO `zamowienie`(`ID`, `user_ID`, `typ`, `daneKlienta_ID`, `czasRealizacji_typ`, `dataRealizacji`, `adres_ID`, `uwagi`, `platnosc`)
                   VALUES (NULL, {$uid}, $type, {$udata}, $realisation, STR_TO_DATE($realisation_date, \"%Y-%m-%d %H:%i\"), {$uaddress}, $comment, $payment);",
               "INSERT INTO `lista_pozycji`(`zamowienie_ID`, `menu_ID`, `ilosc`)
-                  VALUES (last_id, 1, 2), (last_id, 5, 3);"   //TODO  // replace static ID
+                  VALUES {$values};"
           ];
 
           $last_id = 0;
